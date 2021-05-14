@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class AttackManager : MonoBehaviour
 {
-    private IWeapon weapon;
+    private IWeapon sword;
+    private GunManager gun;
+
 
     private void Awake()
     {
-        weapon = GetComponentInChildren<IWeapon>();
+        sword = GetComponentInChildren<IWeapon>();
+        gun = GetComponent<GunManager>();
     }
-
-    private void Update()
+    public void SwordAttack()
     {
-        if (Input.GetMouseButtonDown(0)) { AttackWithWeapon(); }
+        sword.Attack();
     }
-
-    private void AttackWithWeapon()
+    public void GunAttack()
     {
-        weapon.Attack();
+        gun.Shoot();
     }
 }

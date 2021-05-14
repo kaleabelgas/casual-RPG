@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class MovePhysics : MonoBehaviour, IMovement
 {
     [SerializeField] private Rigidbody2D rb2D;

@@ -28,7 +28,7 @@ public class AttackSword : MonoBehaviour, IWeapon
         foreach(Collider2D hit in hits)
         {
             //hit.GetComponent<>
-            Debug.Log(hit.gameObject.name);
+            Debug.Log(hit.gameObject.name, this);
             IDamageable toDamage = hit.GetComponent<IDamageable>();
             if (toDamage != null) { toDamage.GetDamaged(1); }
         }
