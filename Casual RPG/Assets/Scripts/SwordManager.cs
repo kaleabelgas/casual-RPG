@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackSword : MonoBehaviour, IWeapon
+public class SwordManager : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private Transform attackPoint;
-    [SerializeField] private float attackRadius;
-    [SerializeField] private LayerMask enemyMask;
-    [SerializeField] private float timerDefault;
+    [SerializeField] private SwordSO swordSO;
 
     private Collider2D[] hits;
     private float timer;
@@ -24,21 +22,24 @@ public class AttackSword : MonoBehaviour, IWeapon
 
         animator.Play("Sword Hit 1");
 
-        hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyMask);
+        hits = Physics2D.OverlapCircleAll(attackPoint.position, swordSO.AttackRadius, swordSO.Mask);
         foreach(Collider2D hit in hits)
         {
             //hit.GetComponent<>
-            Debug.Log(hit.gameObject.name, this);
+            //Debug.Log(hit.gameObject.name, this);
             IDamageable toDamage = hit.GetComponent<IDamageable>();
-            if (toDamage != null) { toDamage.GetDamaged(1); }
+            if (toDamage != null) { toDamage.GetDamaged(swordSO.Damage); }
+
+
+
         }
 
-        timer = timerDefault;
+        timer = swordSO.AttackSpeed;
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
+        Gizmos.DrawWireSphere(attackPoint.position, swordSO.AttackRadius);
     }
 }

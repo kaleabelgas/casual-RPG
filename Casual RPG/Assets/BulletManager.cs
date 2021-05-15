@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletManager : MonoBehaviour
@@ -7,14 +9,7 @@ public class BulletManager : MonoBehaviour
     [SerializeField] private IMovement movement;
 
     private GameObject owner;
-
-    private int damage;
-    private Vector2 direction;
-    private float searchRadius;
-
     private WaitForSeconds searchDelay;
-    private Transform target;
-    private Transform myTransform;
     private void Awake()
     {
         movement = GetComponent<IMovement>();
@@ -22,20 +17,16 @@ public class BulletManager : MonoBehaviour
     private void Start()
     {
         gameObject.tag = bulletSO.Tag;
-        damage = bulletSO.Damage;
-        myTransform = transform;
         searchDelay = new WaitForSeconds(bulletSO.SearchDelay);
-        searchRadius = bulletSO.SearchRadius;
     }
     private void OnEnable()
     {
         movement.SetMoveSpeed(bulletSO.Speed);
-        movement.SetMovement(direction);
     }
 
     public void SetBulletDirection(Vector2 _direction)
     {
-        direction = _direction;
+        movement.SetMovement(_direction);
 
         if (bulletSO.IsHoming) { StartCoroutine(LookForEnemy(bulletSO.Target)); }
     }
@@ -43,42 +34,54 @@ public class BulletManager : MonoBehaviour
     public void SetOwner(GameObject _owner)
     {
         owner = _owner;
+        Debug.Log(owner, this);
     }
 
 
     private IEnumerator LookForEnemy(string _tag)
     {
         Collider2D[] _targets;
-        float _distanceToTarget = 100;
-        float _distance;
-        Vector2 _directionOfTarget;
-        
+        List<GameObject> _targetObjects = new List<GameObject>();
+
         while (true)
         {
-            _targets = Physics2D.OverlapCircleAll(transform.position, searchRadius);
-            Debug.Log(_targets.Length, this);
+            yield return searchDelay;
+            Transform _targetTransform = null;
+            float _distanceToTarget = 100;
+            float _distance;
+            Vector2 _directionOfTarget;
 
-            if (_targets == null) { yield return searchDelay; }
+            _targets = Physics2D.OverlapCircleAll(transform.position, bulletSO.SearchRadius);
 
-            for(int i = 0; i < _targets.Length; i++)
+            foreach (Collider2D _target in _targets)
             {
-                _distance = Vector2.Distance(_targets[i].transform.position, transform.position);
-
-                if (_distance < _distanceToTarget)
+                if (_target.gameObject.CompareTag(bulletSO.Target) && !_targetObjects.Contains(_target.gameObject))
                 {
-                    Debug.Log("Enemy found", this);
-                    _distanceToTarget = _distance;
-                    target = _targets[i].transform;
+                    _targetObjects.Add(_target.gameObject);
+                    Debug.Log("Enemy Found");
                 }
             }
 
-            if(target == null) { yield return searchDelay; }
+            if (_targetObjects != null)
+            {
+                for (int i = 0; i < _targetObjects.Count; i++)
+                {
+                    _distance = Vector2.Distance(_targetObjects[i].transform.position, transform.position);
 
-            _directionOfTarget = target.position - transform.position;
-            _directionOfTarget.Normalize();
+                    if (_distance < _distanceToTarget)
+                    {
 
-            movement.SetMovement(_directionOfTarget);
-            yield return searchDelay;
+
+                        _distanceToTarget = _distance;
+                        _targetTransform = _targetObjects[i].transform;
+
+                        _directionOfTarget = _targetTransform.position - transform.position;
+                        _directionOfTarget.Normalize();
+                        movement.SetMovement(_directionOfTarget);
+                    }
+                    if (_targetTransform != null) { yield break; }
+                }
+            }
         }
     }
 
@@ -87,16 +90,17 @@ public class BulletManager : MonoBehaviour
         if (other.gameObject.CompareTag(owner.tag)) { return; }
 
         IDamageable toDamage = other.gameObject.GetComponent<IDamageable>();
-        if(toDamage == null) { return; }
+        if (toDamage == null) { return; }
 
-        toDamage.GetDamaged(damage);
+        toDamage.GetDamaged(bulletSO.Damage);
         Debug.Log(other.gameObject.name);
+
+        gameObject.SetActive(false);
     }
 
     private void OnDisable()
     {
         movement.SetMoveSpeed(0);
-        movement.SetMovement(Vector2.zero);
         owner = gameObject;
     }
 }

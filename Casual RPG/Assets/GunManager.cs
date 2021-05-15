@@ -8,21 +8,10 @@ public class GunManager : MonoBehaviour
     // temp
     [SerializeField] private GameObject bullet;
 
-    private float attackSpeed;
     private float attackTimer;
-    private int numSides;
-    private float arc;
-    private float radius;
     private Vector3 point;
     private Vector2 direction;
 
-    private void Start()
-    {
-        attackSpeed = gunSO.AttackSpeed;
-        numSides = gunSO.AttackPoints;
-        arc = gunSO.Arc;
-        radius = gunSO.Radius;
-    }
     private void Update()
     {
         attackTimer -= Time.deltaTime;
@@ -32,22 +21,23 @@ public class GunManager : MonoBehaviour
     {
         if (attackTimer > 0) { return; }
 
-        for (int i = 0; i < numSides; i++)
+        for (int i = 0; i < gunSO.AttackPoints; i++)
         {
-            var angle = Mathf.Deg2Rad * (2 * arc * i - arc * numSides + arc + 180 * numSides) / (2 * numSides);
-            point = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+            var angle = Mathf.Deg2Rad * (2 * gunSO.Arc * i - gunSO.Arc * gunSO.AttackPoints + gunSO.Arc + 0 * gunSO.AttackPoints) / (2 * gunSO.AttackPoints);
+            point = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * gunSO.Radius;
             point = Quaternion.LookRotation(transform.forward, transform.up) * point;
 
             direction = point.normalized;
             point += transform.position;
             Debug.Log("shooting", this);
 
+            //Debug.Log(direction);
             GameObject toShoot = Instantiate(bullet, point, Quaternion.identity);
             BulletManager bm = toShoot.GetComponent<BulletManager>();
-            bm.SetOwner(this.gameObject);
+            bm.SetOwner(transform.parent.gameObject);
             bm.SetBulletDirection(direction);
         }
 
-        attackTimer = attackSpeed;
+        attackTimer = gunSO.AttackSpeed;
     }
 }

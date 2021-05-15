@@ -10,12 +10,13 @@ public class HealthManager : MonoBehaviour, IDamageable
     public void Die()
     {
         Debug.Log("me ded");
+        gameObject.SetActive(false);
     }
 
     public void GetDamaged(int _damage)
     {
-        Debug.Log(_damage);
-        Debug.Log(Health);
+        //Debug.Log(_damage);
+        //Debug.Log(Health);
         Health = Mathf.Max(0, Health - _damage);
 
         if(Health <= 0) { Die(); }

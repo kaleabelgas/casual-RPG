@@ -12,7 +12,7 @@ public class MovePhysics : MonoBehaviour, IMovement
     public void SetMoveSpeed(float _moveSpeed)
     {
         moveSpeed = _moveSpeed;
-        Debug.Log(moveSpeed);
+        //Debug.Log(moveSpeed);
     }
     public void SetMovement(Vector2 _direction)
     {
@@ -21,7 +21,7 @@ public class MovePhysics : MonoBehaviour, IMovement
     private void Move()
     {
         rb2D.MovePosition(rb2D.position + movementDirection * moveSpeed * Time.deltaTime);
-        Debug.Log(moveSpeed);
+        //Debug.Log(moveSpeed, this);
 
         if (movementDirection.x < 0 && isFacingRight)
             Flip();

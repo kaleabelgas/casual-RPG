@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class AttackManager : MonoBehaviour
 {
-    private IWeapon sword;
+    private SwordManager sword;
     private GunManager gun;
 
 
     private void Awake()
     {
-        sword = GetComponentInChildren<IWeapon>();
-        gun = GetComponent<GunManager>();
+        sword = GetComponentInChildren<SwordManager>();
+        gun = GetComponentInChildren<GunManager>();
     }
     public void SwordAttack()
     {
