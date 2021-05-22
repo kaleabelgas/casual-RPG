@@ -24,6 +24,7 @@ public class BulletManager : MonoBehaviour
     private void OnEnable()
     {
         movement.SetMoveSpeed(bulletSO.Speed);
+        GameManager.AddBulletToList(this.gameObject);
     }
 
     public void SetBulletDirection(Vector2 _direction)
@@ -92,15 +93,25 @@ public class BulletManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag(owner.tag)) { return; }
+        if (other.gameObject.CompareTag(owner.tag))
+        {
+            Debug.Log($"Hitting {other.name}, owner {owner.name}");
+            //gameObject.SetActive(false);
+            return; 
+        }
 
         IDamageable toDamage = other.gameObject.GetComponent<IDamageable>();
-        if (toDamage == null) { return; }
+        if (toDamage == null)
+        {
+            Debug.Log($"Hitting {other.name}, owner {owner.name}");
+            gameObject.SetActive(false);
+            return;
+        }
 
         toDamage.GetDamaged(bulletSO.Damage);
         Debug.Log(other.gameObject.name);
-
         gameObject.SetActive(false);
+
     }
 
     private void OnBecameInvisible()
@@ -111,6 +122,7 @@ public class BulletManager : MonoBehaviour
     private void OnDisable()
     {
         movement.SetMoveSpeed(0);
-        owner = gameObject;
+        //owner = gameObject;
+        GameManager.RemoveBulletFromList(this.gameObject);
     }
 }

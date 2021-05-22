@@ -9,7 +9,7 @@ public class HealthManager : MonoBehaviour, IDamageable
     private int healthDefault;
     public void Die()
     {
-        Debug.Log("me ded");
+        if (gameObject.tag.Equals("Enemy")) { GameManager.RemoveEnemyFromList(this.gameObject); }
         gameObject.SetActive(false);
     }
 
@@ -19,7 +19,7 @@ public class HealthManager : MonoBehaviour, IDamageable
         //Debug.Log(Health);
         Health = Mathf.Max(0, Health - _damage);
 
-        if(Health <= 0) { Die(); }
+        if (Health <= 0) { Die(); }
     }
 
     public void GetHealed(int _heal)

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : Entity
 {
-    [SerializeField] private AttackManager attackManager;
     private IMovement movement;
 
     protected override void Awake()
@@ -16,11 +15,5 @@ public class PlayerController : Entity
     {
         base.Start();
         movement.SetMoveSpeed(thisEntity.MoveSpeed);
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButton(0)) { attackManager.SwordAttack(); }
-        if (Input.GetMouseButton(1)) { attackManager.GunAttack(); }
     }
 }

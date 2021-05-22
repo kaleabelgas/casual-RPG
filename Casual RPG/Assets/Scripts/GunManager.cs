@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
-public class GunManager : MonoBehaviour, IPickupable
+public class GunManager : MonoBehaviour, IPickupable, IWeapon
 
 {
     [SerializeField] private GunSO gunSO;
@@ -11,7 +10,7 @@ public class GunManager : MonoBehaviour, IPickupable
     private ObjectPooler objectPooler;
 
     private float attackTimer;
-    private bool isEquipped = true;
+    private bool isEquipped;
     private Vector3 point;
     private Vector2 direction;
 
@@ -24,7 +23,7 @@ public class GunManager : MonoBehaviour, IPickupable
         attackTimer -= Time.deltaTime;
     }
 
-    public void Shoot()
+    public void Attack()
     {
         if (!isEquipped) { return; }
         if (attackTimer > 0) { return; }
@@ -37,7 +36,7 @@ public class GunManager : MonoBehaviour, IPickupable
 
             direction = point.normalized;
             point += transform.position;
-            Debug.Log("shooting", this);
+            //Debug.Log("shooting", this);
 
             //Debug.Log(direction);
             GameObject toShoot = objectPooler.SpawnFromPool(gunSO.BulletUsed, point, Quaternion.identity);
@@ -54,6 +53,7 @@ public class GunManager : MonoBehaviour, IPickupable
     {
         transform.SetParent(_parent);
         transform.position = _parent.position;
+        transform.rotation = _parent.rotation;
         isEquipped = true;
     }
 
