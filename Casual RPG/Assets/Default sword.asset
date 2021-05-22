@@ -9,14 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3fac599ede824d4fab07b3c3330adb7, type: 3}
-  m_Name: Default Bullet
+  m_Script: {fileID: 11500000, guid: c516001a3d74eb843b95a7768c4e6abf, type: 3}
+  m_Name: Default sword
   m_EditorClassIdentifier: 
-  Tag: Bullet
-  Damage: 30
-  Speed: 20
-  IsHoming: 1
-  Target: Enemy
-  SearchDelay: 0.1
-  SearchRadius: 5
-  Accuracy: 0.594
+  Mask:
+    serializedVersion: 2
+    m_Bits: 55
+  Damage: 10
+  AttackSpeed: 0.2
+  AttackRadius: 1

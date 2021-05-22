@@ -10,6 +10,8 @@ public class BulletManager : MonoBehaviour
 
     private GameObject owner;
     private WaitForSeconds searchDelay;
+
+    private Vector2 lastDirection;
     private void Awake()
     {
         movement = GetComponent<IMovement>();
@@ -27,6 +29,7 @@ public class BulletManager : MonoBehaviour
     public void SetBulletDirection(Vector2 _direction)
     {
         movement.SetMovement(_direction);
+        lastDirection = _direction;
 
         if (bulletSO.IsHoming) { StartCoroutine(LookForEnemy(bulletSO.Target)); }
     }
@@ -42,14 +45,16 @@ public class BulletManager : MonoBehaviour
     {
         Collider2D[] _targets;
         List<GameObject> _targetObjects = new List<GameObject>();
+        Transform _targetTransform = null;
+        float _distanceToTarget = 100;
+        float _distance;
+        Vector2 _directionOfTarget = lastDirection;
 
         while (true)
         {
             yield return searchDelay;
-            Transform _targetTransform = null;
-            float _distanceToTarget = 100;
-            float _distance;
-            Vector2 _directionOfTarget;
+
+            _targetObjects.Clear();
 
             _targets = Physics2D.OverlapCircleAll(transform.position, bulletSO.SearchRadius);
 
@@ -70,18 +75,18 @@ public class BulletManager : MonoBehaviour
 
                     if (_distance < _distanceToTarget)
                     {
-
-
                         _distanceToTarget = _distance;
                         _targetTransform = _targetObjects[i].transform;
 
-                        _directionOfTarget = _targetTransform.position - transform.position;
-                        _directionOfTarget.Normalize();
-                        movement.SetMovement(_directionOfTarget);
+                        _directionOfTarget += (Vector2) (_targetTransform.position - transform.position) * bulletSO.Accuracy;
+                        //_directionOfTarget += lastDirection * bulletSO.Accuracy;
                     }
-                    if (_targetTransform != null) { yield break; }
+                    if (_targetTransform == null) { yield break; }
                 }
             }
+            _directionOfTarget.Normalize();
+            movement.SetMovement(_directionOfTarget);
+            lastDirection = _directionOfTarget;
         }
     }
 
@@ -95,6 +100,11 @@ public class BulletManager : MonoBehaviour
         toDamage.GetDamaged(bulletSO.Damage);
         Debug.Log(other.gameObject.name);
 
+        gameObject.SetActive(false);
+    }
+
+    private void OnBecameInvisible()
+    {
         gameObject.SetActive(false);
     }
 

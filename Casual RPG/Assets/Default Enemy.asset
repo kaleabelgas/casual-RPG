@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Default Enemy
   m_EditorClassIdentifier: 
   Tag: Enemy
-  Health: 20
+  Health: 579
   MoveSpeed: 20

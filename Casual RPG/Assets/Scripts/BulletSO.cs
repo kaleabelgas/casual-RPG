@@ -12,4 +12,6 @@ public class BulletSO : ScriptableObject
     public string Target;
     public float SearchDelay;
     public float SearchRadius;
+    [Range(0, 1)]
+    public float Accuracy;
 }
