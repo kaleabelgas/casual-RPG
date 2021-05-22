@@ -6,6 +6,7 @@ using UnityEngine;
 public class GunSO : ScriptableObject
 {
     public string Tag;
+    public string BulletUsed;
     [Range(0.01f, 2)]
     public float AttackSpeed;
     public int AttackPoints;

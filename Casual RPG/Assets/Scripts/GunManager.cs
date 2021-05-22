@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunManager : MonoBehaviour
+[RequireComponent(typeof(BoxCollider2D))]
+public class GunManager : MonoBehaviour, IPickupable
+
 {
     [SerializeField] private GunSO gunSO;
-    // temp
-    [SerializeField] private GameObject bullet;
+    
+    private ObjectPooler objectPooler;
 
     private float attackTimer;
+    private bool isEquipped;
     private Vector3 point;
     private Vector2 direction;
 
+    private void Start()
+    {
+        objectPooler = ObjectPooler.Instance;
+    }
     private void Update()
     {
         attackTimer -= Time.deltaTime;
@@ -19,6 +26,7 @@ public class GunManager : MonoBehaviour
 
     public void Shoot()
     {
+        if (!isEquipped) { return; }
         if (attackTimer > 0) { return; }
 
         for (int i = 0; i < gunSO.AttackPoints; i++)
@@ -32,12 +40,26 @@ public class GunManager : MonoBehaviour
             Debug.Log("shooting", this);
 
             //Debug.Log(direction);
-            GameObject toShoot = Instantiate(bullet, point, Quaternion.identity);
+            GameObject toShoot = objectPooler.SpawnFromPool(gunSO.BulletUsed, point, Quaternion.identity);
+            if(toShoot == null) { return; }
             BulletManager bm = toShoot.GetComponent<BulletManager>();
             bm.SetOwner(transform.parent.gameObject);
             bm.SetBulletDirection(direction);
         }
 
         attackTimer = gunSO.AttackSpeed;
+    }
+
+    public void PickUp(Transform _parent)
+    {
+        transform.SetParent(_parent);
+        transform.position = _parent.position;
+        isEquipped = true;
+    }
+
+    public void Drop()
+    {
+        transform.SetParent(null);
+        isEquipped = false;
     }
 }

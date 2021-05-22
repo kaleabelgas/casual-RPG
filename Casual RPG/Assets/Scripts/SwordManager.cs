@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SwordManager : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private SwordSO swordSO;
 
@@ -20,8 +19,6 @@ public class SwordManager : MonoBehaviour
     {
         if (timer > 0) { return; }
 
-        animator.Play("Sword Hit 1");
-
         hits = Physics2D.OverlapCircleAll(attackPoint.position, swordSO.AttackRadius, swordSO.Mask);
         foreach(Collider2D hit in hits)
         {
@@ -35,11 +32,5 @@ public class SwordManager : MonoBehaviour
         }
 
         timer = swordSO.AttackSpeed;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, swordSO.AttackRadius);
     }
 }

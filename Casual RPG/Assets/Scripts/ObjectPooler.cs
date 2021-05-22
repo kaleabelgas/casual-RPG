@@ -12,7 +12,7 @@ public class ObjectPooler : MonoBehaviour
         public int poolSize;
     }
 
-    #region Singleton ugh
+    #region Singleton
 
     public static ObjectPooler Instance;
 
@@ -52,7 +52,7 @@ public class ObjectPooler : MonoBehaviour
 
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
 
-        if(objectToSpawn != null)
+        if(objectToSpawn != null && !objectToSpawn.activeInHierarchy)
         {
 
             objectToSpawn.SetActive(true);
@@ -64,6 +64,19 @@ public class ObjectPooler : MonoBehaviour
             //Debug.Log("Pooler Used");
 
             return objectToSpawn;
+        }
+        else
+        {
+            foreach (Pool pool in pools)
+            {
+                if (pool.tag == tag)
+                {
+                    pool.poolSize++;
+                    objectToSpawn = Instantiate(pool.objectPrefab, position, rotation);
+                    poolDictionary[tag].Enqueue(objectToSpawn);
+                    return objectToSpawn;
+                }
+            }
         }
         return null;
     }
