@@ -23,7 +23,7 @@ public class WeaponHolder : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) { Equip(); }
         if (Input.GetKeyDown(KeyCode.Q)) { Drop(); }
 
-        if (Input.GetMouseButton(0) && currentWeapon != null) { currentWeapon.Attack(); }
+        if (Input.GetKey(KeyCode.Space) && currentWeapon != null) { currentWeapon.Attack(); }
     }
     private void Equip()
     {

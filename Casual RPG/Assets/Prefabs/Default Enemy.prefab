@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1781837380728080344}
   - component: {fileID: 1781837380728080351}
+  - component: {fileID: 183771650704763091}
   - component: {fileID: 1781837380728080350}
-  - component: {fileID: 1781837380728080349}
   - component: {fileID: 1781837380728080348}
   - component: {fileID: -2829325726120105358}
+  - component: {fileID: -2709232095438035515}
   m_Layer: 0
   m_Name: Default Enemy
   m_TagString: Enemy
@@ -86,6 +87,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &183771650704763091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781837380728080339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e926ac9c7931842a1d0d3ccd0ba0e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisEntity: {fileID: 11400000, guid: ab373cfc2ad5a3e42a1b9950988776d7, type: 2}
 --- !u!114 &1781837380728080350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,19 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4443a3cc256dc4db32366a98c66587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1781837380728080349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781837380728080339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f41b795b0f1664141839ec1b25c0e3ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisEntity: {fileID: 11400000, guid: ab373cfc2ad5a3e42a1b9950988776d7, type: 2}
 --- !u!58 &1781837380728080348
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -121,7 +122,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -148,3 +149,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-2709232095438035515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781837380728080339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3d7617f23d4b14da7017cab0a07a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb2D: {fileID: -2829325726120105358}
