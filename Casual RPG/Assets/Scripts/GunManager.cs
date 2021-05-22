@@ -11,7 +11,7 @@ public class GunManager : MonoBehaviour, IPickupable
     private ObjectPooler objectPooler;
 
     private float attackTimer;
-    private bool isEquipped;
+    private bool isEquipped = true;
     private Vector3 point;
     private Vector2 direction;
 

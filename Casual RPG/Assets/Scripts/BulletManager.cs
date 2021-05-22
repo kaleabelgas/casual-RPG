@@ -37,7 +37,7 @@ public class BulletManager : MonoBehaviour
     public void SetOwner(GameObject _owner)
     {
         owner = _owner;
-        Debug.Log(owner, this);
+        //Debug.Log(owner, this);
     }
 
 
