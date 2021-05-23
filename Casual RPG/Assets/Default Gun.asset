@@ -15,6 +15,7 @@ MonoBehaviour:
   Tag: Gun
   BulletUsed: Default Bullet
   AttackSpeed: 0.1
-  AttackPoints: 1
-  Arc: 1
+  AttackPoints: 20
+  Arc: 360
   Radius: 1
+  ChanceToDrop: 50

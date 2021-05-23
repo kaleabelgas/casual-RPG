@@ -7,14 +7,15 @@ public class PlayerController : Entity
     private IMovement movement;
     [SerializeField] private WeaponHolder weaponHolder;
 
+    [SerializeField] private PlayerHealthManager playerHealthManager;
+
     protected override void Awake()
     {
-        base.Awake();
         movement = GetComponent<IMovement>();
     }
     protected override void Start()
     {
-        base.Start();
+        playerHealthManager.SetHealth(thisEntity.Health);
         movement.SetMoveSpeed(thisEntity.MoveSpeed);
     }
 

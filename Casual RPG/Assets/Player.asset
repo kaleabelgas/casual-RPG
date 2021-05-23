@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   Tag: Player
-  Health: 100
+  Health: 500
   MoveSpeed: 10

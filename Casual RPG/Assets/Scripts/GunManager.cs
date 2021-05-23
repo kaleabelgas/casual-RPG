@@ -41,7 +41,7 @@ public class GunManager : MonoBehaviour, IPickupable, IWeapon
             GameObject toShoot = objectPooler.SpawnFromPool(gunSO.BulletUsed, point, Quaternion.identity);
             if (toShoot == null) { return; }
             BulletManager bm = toShoot.GetComponent<BulletManager>();
-            bm.SetOwner(transform.parent.gameObject);
+            bm.SetOwner(transform.parent.parent.gameObject);
             bm.SetBulletDirection(direction);
         }
 
@@ -59,8 +59,14 @@ public class GunManager : MonoBehaviour, IPickupable, IWeapon
 
     public void Drop()
     {
+        Transform owner = transform.parent.parent;
         transform.SetParent(null);
         transform.position = (Vector2) transform.position + Vector2.down ;
         isEquipped = false;
+
+        if (owner.CompareTag("Player")) { return; }
+
+        float randomNumber = Random.Range(0, 100);
+        if(randomNumber > gunSO.ChanceToDrop) { Destroy(gameObject); }
     }
 }

@@ -27,7 +27,7 @@ public class SwordManager : MonoBehaviour, IPickupable, IWeapon
             //hit.GetComponent<>
             //Debug.Log(hit.gameObject.name, this);
             IDamageable toDamage = hit.GetComponent<IDamageable>();
-            if (toDamage != null) { toDamage.GetDamaged(swordSO.Damage, this.gameObject); }
+            if (toDamage != null) { toDamage.GetDamaged(swordSO.Damage, this.gameObject, transform.parent.parent.gameObject); }
 
 
 
@@ -47,6 +47,7 @@ public class SwordManager : MonoBehaviour, IPickupable, IWeapon
     public void Drop()
     {
         transform.SetParent(null);
+        transform.position = (Vector2)transform.position + Vector2.down;
         isEquipped = false;
     }
 }

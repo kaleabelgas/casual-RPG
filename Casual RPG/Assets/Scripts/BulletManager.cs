@@ -8,8 +8,8 @@ public class BulletManager : MonoBehaviour
     [SerializeField] private BulletSO bulletSO;
     [SerializeField] private IMovement movement;
 
-
-    private float lifetime = 100;
+    private const float lifetimeconst = 2;
+    private float lifetime;
     private GameObject owner;
     private WaitForSeconds searchDelay;
 
@@ -27,6 +27,7 @@ public class BulletManager : MonoBehaviour
     {
         movement.SetMoveSpeed(bulletSO.Speed);
         GameManager.AddBulletToList(this.gameObject);
+        lifetime = lifetimeconst;
     }
 
     private void Update()
@@ -99,7 +100,8 @@ public class BulletManager : MonoBehaviour
             return;
         }
 
-        toDamage.GetDamaged(bulletSO.Damage, this.gameObject);
+        Debug.Log($"Hitting {other.gameObject.name} with bullet from {owner.name}");
+        toDamage.GetDamaged(bulletSO.Damage, this.gameObject, owner);
         Debug.Log(other.gameObject.name);
         gameObject.SetActive(false);
 

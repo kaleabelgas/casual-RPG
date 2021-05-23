@@ -26,7 +26,7 @@ public class WeaponHolder : MonoBehaviour
     {
         if (transform.childCount == 0) { return; }
         heldItemObject = transform.GetChild(0).gameObject;
-        if(transform.childCount > 0) { IsHoldingWeapon = true; }
+        IsHoldingWeapon = transform.childCount > 0;
         if(heldItem == null) { throw new System.Exception("HELDTHING IS NULL"); }
         heldItem.PickUp(transform);
     }
@@ -152,6 +152,6 @@ public class WeaponHolder : MonoBehaviour
         heldItemObject = null;
         currentWeapon = null;
         heldItem = null;
-        Debug.Log("drop");
+        //Debug.Log("drop");
     }
 }

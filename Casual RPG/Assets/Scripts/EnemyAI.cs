@@ -10,9 +10,15 @@ public class EnemyAI : Entity
     {
         base.Awake();
         movement = GetComponent<IMovement>();
+        healthManager.OnEntityDeath += weaponHolder.DropCurrentWeapon;
     }
 
     protected override void Start() => base.Start();
+
+    private void Update()
+    {
+        if (weaponHolder.IsHoldingWeapon) { weaponHolder.UseWeapon(); }
+    }
 
     protected void OnEnable()
     {
@@ -28,7 +34,7 @@ public class EnemyAI : Entity
         IDamageable toDamage = other.gameObject.GetComponent<IDamageable>();
         if (toDamage == null) { return; }
 
-        toDamage.GetDamaged(15, this.gameObject);
+        toDamage.GetDamaged(15, this.gameObject, this.gameObject);
         gameObject.SetActive(false);
     }
 
