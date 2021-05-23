@@ -9,7 +9,6 @@ public class HealthManager : MonoBehaviour, IDamageable
     private int healthDefault;
     public void Die()
     {
-        if (gameObject.tag.Equals("Enemy")) { GameManager.RemoveEnemyFromList(gameObject); }
         gameObject.SetActive(false);
     }
 
@@ -31,5 +30,11 @@ public class HealthManager : MonoBehaviour, IDamageable
     {
         healthDefault = _health;
         Health = healthDefault;
+    }
+
+    private void OnDisable()
+    {
+
+        if (gameObject.tag.Equals("Enemy")) { GameManager.RemoveEnemyFromList(gameObject); }
     }
 }

@@ -22,7 +22,8 @@ public class PlayerController : Entity
     {
 
         if (Input.GetKeyDown(KeyCode.E)) { weaponHolder.Equip(); }
-        if (Input.GetKeyDown(KeyCode.Q)) { weaponHolder.Drop(); }
-
+        if (Input.GetKeyDown(KeyCode.Q)) { weaponHolder.DropCurrentWeapon(); }
+        if (Input.GetKeyDown(KeyCode.R)) { weaponHolder.GiveWeaponToTower(); }
+        if (Input.GetKey(KeyCode.Space)) { weaponHolder.UseWeapon(); }
     }
 }

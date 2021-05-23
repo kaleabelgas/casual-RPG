@@ -30,12 +30,10 @@ public class WaveManager : MonoBehaviour
                 List<GameObject> enemies = waves[_currentWave].SpawnEnemies();
                 foreach (GameObject enemy in enemies)
                 {
-                    enemy.SetActive(true);
                     enemy.transform.position = waves[_currentWave].spawnPoints[i];
+                    enemy.SetActive(true);
                     GameManager.AddEnemyToList(enemy);
                     yield return new WaitForSeconds(timeBetweenEnemySpawn);
-
-                    //Debug.Log("Setting Position for " + enemy.name + waves[_currentWave].spawnPoints[i], enemy);
                 }
             }
 

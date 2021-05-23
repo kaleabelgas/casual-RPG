@@ -8,6 +8,8 @@ public class BulletManager : MonoBehaviour
     [SerializeField] private BulletSO bulletSO;
     [SerializeField] private IMovement movement;
 
+
+    private float lifetime = 100;
     private GameObject owner;
     private WaitForSeconds searchDelay;
 
@@ -25,6 +27,13 @@ public class BulletManager : MonoBehaviour
     {
         movement.SetMoveSpeed(bulletSO.Speed);
         GameManager.AddBulletToList(this.gameObject);
+    }
+
+    private void Update()
+    {
+        lifetime -= Time.deltaTime;
+
+        if(lifetime <= 0) { gameObject.SetActive(false); }
     }
 
     public void SetBulletDirection(Vector2 _direction)
@@ -95,12 +104,6 @@ public class BulletManager : MonoBehaviour
         gameObject.SetActive(false);
 
     }
-
-    private void OnBecameInvisible()
-    {
-        gameObject.SetActive(false);
-    }
-
     private void OnDisable()
     {
         movement.SetMoveSpeed(0);

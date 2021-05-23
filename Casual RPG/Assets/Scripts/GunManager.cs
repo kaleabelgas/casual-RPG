@@ -6,14 +6,6 @@ public class GunManager : MonoBehaviour, IPickupable, IWeapon
 
 {
     [SerializeField] private GunSO gunSO;
-
-    [SerializeField] private bool isFacingEnemy;
-    [SerializeField] private float enemySearchDelay;
-    [SerializeField] private string targetTag;
-
-    GameObject _target = null;
-
-    private float _enemySearchDelay;
     private ObjectPooler objectPooler;
 
     private float attackTimer;
@@ -24,59 +16,10 @@ public class GunManager : MonoBehaviour, IPickupable, IWeapon
     private void Start()
     {
         objectPooler = ObjectPooler.Instance;
-        _enemySearchDelay = enemySearchDelay;
     }
     private void Update()
     {
         attackTimer -= Time.deltaTime;
-        if (isFacingEnemy && isEquipped) { FaceEnemy(); }
-    }
-
-    private void FaceEnemy()
-    {
-        _enemySearchDelay -= Time.deltaTime;
-        if (_enemySearchDelay <= 0)
-        {
-            _target = LookForClosestEnemy();
-            _enemySearchDelay = enemySearchDelay;
-        }
-
-        if (_target == null)
-        {
-            return;
-        }
-        //Debug.Log(_target.name, _target);
-
-        Vector2 lookDir = _target.transform.position - transform.position;
-
-        lookDir.Normalize();
-        //Debug.Log(lookDir);
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, angle);
-    }
-
-    private GameObject LookForClosestEnemy()
-    {
-        GameObject _closestEnemy = null;
-        List<GameObject> _enemies = GameManager.GetAllActiveEnemies();
-
-        if (_enemies == null) { return null; }
-        float _closestDistance = 100;
-        float _distanceToEnemy;
-
-        foreach (GameObject _enemy in _enemies)
-        {
-            _distanceToEnemy = Vector2.Distance(_enemy.transform.position, transform.position);
-
-            if (_distanceToEnemy < _closestDistance)
-            {
-                _closestDistance = _distanceToEnemy;
-                _closestEnemy = _enemy;
-            }
-        }
-
-        return _closestEnemy;
     }
 
     public void Attack()
@@ -117,6 +60,7 @@ public class GunManager : MonoBehaviour, IPickupable, IWeapon
     public void Drop()
     {
         transform.SetParent(null);
+        transform.position = (Vector2) transform.position + Vector2.down ;
         isEquipped = false;
     }
 }

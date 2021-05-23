@@ -6,6 +6,9 @@ using UnityEngine;
 public class TowerManager : MonoBehaviour, IDamageable
 {
     [SerializeField] private TowerSO[] towerUpgrades;
+    [SerializeField] private WeaponHolder weaponHolder;
+
+
     private int currentTowerLevel;
     private TowerSO currentTower;
 
@@ -19,13 +22,17 @@ public class TowerManager : MonoBehaviour, IDamageable
         SetHealth(currentTower.Health);
     }
 
+    private void Update()
+    {
+        if (GameManager.LookForEnemies() && weaponHolder.IsHoldingWeapon) { weaponHolder.UseWeapon(); }
+    }
 
     public void UpgradeTower()
     {
         currentTowerLevel++;
         currentTower = towerUpgrades[currentTowerLevel];
-    }
-
+        SetHealth(currentTower.Health);
+    }   
     public void Die()
     {
         OnTowerDeath?.Invoke();

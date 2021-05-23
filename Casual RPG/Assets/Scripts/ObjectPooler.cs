@@ -41,10 +41,6 @@ public class ObjectPooler : MonoBehaviour
     public Dictionary<string, Queue<GameObject>> poolDictionary;
     public List<Pool> pools;
 
-    private void Start()
-    {
-    }
-
     public GameObject SpawnFromPool(string tag, Vector2 position, Quaternion rotation)
     {
         if (!poolDictionary.ContainsKey(tag))

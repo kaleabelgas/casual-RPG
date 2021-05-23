@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tag: Bullet
   Damage: 9
-  Speed: 37.76
+  Speed: 40
   IsHoming: 0
   Target: Enemy
   SearchDelay: 0.1

@@ -6,5 +6,5 @@ using UnityEngine;
 public class TowerSO : ScriptableObject
 {
     public int Health;
-    public GunSO Weapon;
+    public GameObject Weapon;
 }

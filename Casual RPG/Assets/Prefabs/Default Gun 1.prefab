@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4205776846753432934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.429, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.879, z: 1}
   m_Children: []
   m_Father: {fileID: 7167207226684864067}
   m_RootOrder: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7167207226684864065}
   - component: {fileID: -2884516365499354124}
   m_Layer: 6
-  m_Name: Default Gun
+  m_Name: Default Gun 1
   m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
