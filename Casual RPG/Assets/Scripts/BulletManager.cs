@@ -39,7 +39,7 @@ public class BulletManager : MonoBehaviour
         movement.SetMovement(_direction);
         lastDirection = _direction;
 
-        if (bulletSO.IsHoming && !owner.CompareTag("Enemy")) { StartCoroutine(LookForEnemy(bulletSO.Target)); }
+        if (bulletSO.IsHoming && !owner.CompareTag("Enemy")) { StartCoroutine(LookForEnemy()); }
     }
 
     public void SetOwner(GameObject _owner)
@@ -49,7 +49,7 @@ public class BulletManager : MonoBehaviour
     }
 
 
-    private IEnumerator LookForEnemy(string _tag)
+    private IEnumerator LookForEnemy()
     {
         List<GameObject> _targetObjects = GameManager.GetAllActiveEnemies();
         Transform _targetTransform = null;

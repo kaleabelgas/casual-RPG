@@ -12,6 +12,7 @@ public class WeaponHolder : MonoBehaviour
 
     [SerializeField] private float enemySearchDelay;
     [SerializeField] bool shouldFaceEnemy;
+    [SerializeField] private bool isAcceptingWeapon = true;
     private GameObject _target;
     private float _enemySearchDelay;
 
@@ -70,6 +71,7 @@ public class WeaponHolder : MonoBehaviour
     public void ReceiveWeapon(GameObject _weapon)
     {
         if(_weapon == null) { return; }
+        if (!isAcceptingWeapon) { return; }
         DropCurrentWeapon();
         _weapon.transform.SetParent(transform);
         _weapon.transform.position = transform.position;
