@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tag: Gun
   BulletUsed: Default Bullet
-  AttackSpeed: 0.09
-  AttackPoints: 32
-  Arc: 100
+  AttackSpeed: 0.1
+  AttackPoints: 1
+  Arc: 1
   Radius: 1

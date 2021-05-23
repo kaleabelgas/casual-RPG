@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : Entity
 {
     private IMovement movement;
+    [SerializeField] private WeaponHolder weaponHolder;
 
     protected override void Awake()
     {
@@ -15,5 +16,13 @@ public class PlayerController : Entity
     {
         base.Start();
         movement.SetMoveSpeed(thisEntity.MoveSpeed);
+    }
+
+    private void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.E)) { weaponHolder.Equip(); }
+        if (Input.GetKeyDown(KeyCode.Q)) { weaponHolder.Drop(); }
+
     }
 }

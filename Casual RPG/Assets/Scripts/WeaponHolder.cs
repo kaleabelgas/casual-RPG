@@ -9,23 +9,27 @@ public class WeaponHolder : MonoBehaviour
     private GameObject heldThingObject;
     private IWeapon currentWeapon;
 
-    private void Start()
+    private void Awake()
     {
+        if(transform.childCount == 0) { return; }
         currentWeapon = transform.GetChild(0).gameObject.GetComponent<IWeapon>();
         heldThing = transform.GetChild(0).gameObject.GetComponent<IPickupable>();
+        Debug.Log(transform.GetChild(0).name);
+    }
+    private void Start()
+    {
+        if (transform.childCount == 0) { return; }
         heldThingObject = transform.GetChild(0).gameObject;
         if(transform.childCount > 0) { isHoldingWeapon = true; }
+        if(heldThing == null) { throw new System.Exception("HELDTHING IS NULL"); }
         heldThing.PickUp(transform);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) { Equip(); }
-        if (Input.GetKeyDown(KeyCode.Q)) { Drop(); }
-
         if (Input.GetKey(KeyCode.Space) && currentWeapon != null) { currentWeapon.Attack(); }
     }
-    private void Equip()
+    public void Equip()
     {
         Collider2D[] _weapons = Physics2D.OverlapCircleAll(transform.position, 1f);
 
@@ -49,7 +53,7 @@ public class WeaponHolder : MonoBehaviour
             break;
         }
     }
-    private void Drop()
+    public void Drop()
     {
         if (transform.childCount <= 0) { return; }
         isHoldingWeapon = false;

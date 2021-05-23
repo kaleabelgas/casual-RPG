@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2748cb705d5d394da59c95d90f9bf04, type: 3}
-  m_Name: Default Enemy
+  m_Script: {fileID: 11500000, guid: bd70da300a354a046809bfb410affa87, type: 3}
+  m_Name: Level 1 Tower
   m_EditorClassIdentifier: 
-  Tag: Enemy
-  Health: 50
-  MoveSpeed: 1
+  Health: 100
+  Weapon: {fileID: 11400000, guid: d375692a95a3d074987ee7d7e2536376, type: 2}

@@ -16,6 +16,6 @@ MonoBehaviour:
   - Prefab: Default Enemy
     min: 4
     max: 5
-  waveTime: 5
+  TimeBeforeWave: 1
   spawnPoints:
   - {x: 5.74, y: 6.85e-43}

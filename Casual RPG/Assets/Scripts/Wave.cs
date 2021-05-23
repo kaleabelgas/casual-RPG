@@ -14,7 +14,7 @@ public struct EnemyContainer
 public class Wave : ScriptableObject
 {
     [SerializeField] private EnemyContainer[] prefabs;
-    public float waveTime;
+    public float TimeBeforeWave;
     public Vector2[] spawnPoints;
 
     public List<GameObject> SpawnEnemies()
@@ -25,7 +25,9 @@ public class Wave : ScriptableObject
             var numEnemies = Random.Range(enemy.min, enemy.max);
             for (int i = 0; i < numEnemies; i++)
             {
-                toReturn.Add(ObjectPooler.Instance.SpawnFromPool(enemy.Prefab, Vector2.zero, Quaternion.identity));
+                GameObject _toReturn = ObjectPooler.Instance.SpawnFromPool(enemy.Prefab, Vector2.zero, Quaternion.identity);
+                _toReturn.SetActive(false);
+                toReturn.Add(_toReturn);
             }
         }
         return toReturn;

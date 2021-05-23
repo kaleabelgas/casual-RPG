@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Default Bullet
   m_EditorClassIdentifier: 
   Tag: Bullet
-  Damage: 30
-  Speed: 38.6
+  Damage: 9
+  Speed: 37.76
   IsHoming: 0
   Target: Enemy
   SearchDelay: 0.1
-  SearchRadius: 5
-  Accuracy: 0.594
+  SearchRadius: 10
+  Accuracy: 1

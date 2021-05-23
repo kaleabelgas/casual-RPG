@@ -5,32 +5,42 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private Wave[] waves;
+    [SerializeField] private float timeBetweenEnemySpawn;
     private int _currentWave;
     private float _timeToNextWave;
 
-    private void Update()
+    private void Start()
     {
-        _timeToNextWave -= Time.deltaTime;
-
-        if (_timeToNextWave <= 0) { StartWave(); }
+        StartCoroutine(StartWave());
     }
-    private void StartWave()
+    private IEnumerator StartWave()
     {
-        if (_currentWave + 1 > waves.Length) { return; }
-        _timeToNextWave = waves[_currentWave].waveTime;
-
-
-        for (int i = 0; i < waves[_currentWave].spawnPoints.Length; i++)
+        while (true)
         {
-            List<GameObject> enemies = waves[_currentWave].SpawnEnemies();
-            foreach (GameObject enemy in enemies)
+
+            if (_currentWave + 1 > waves.Length) { yield break; }
+            _timeToNextWave = waves[_currentWave].TimeBeforeWave;
+
+            yield return new WaitForSeconds(_timeToNextWave);
+
+
+
+            for (int i = 0; i < waves[_currentWave].spawnPoints.Length; i++)
             {
-                enemy.transform.position = waves[_currentWave].spawnPoints[i];
-                GameManager.AddEnemyToList(enemy);
-                //Debug.Log("Setting Position for " + enemy.name + waves[_currentWave].spawnPoints[i], enemy);
+                List<GameObject> enemies = waves[_currentWave].SpawnEnemies();
+                foreach (GameObject enemy in enemies)
+                {
+                    enemy.SetActive(true);
+                    enemy.transform.position = waves[_currentWave].spawnPoints[i];
+                    GameManager.AddEnemyToList(enemy);
+                    yield return new WaitForSeconds(timeBetweenEnemySpawn);
+
+                    //Debug.Log("Setting Position for " + enemy.name + waves[_currentWave].spawnPoints[i], enemy);
+                }
             }
+
+            _currentWave++;
         }
 
-        _currentWave++;
     }
 }

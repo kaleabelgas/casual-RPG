@@ -19,10 +19,11 @@ public class EnemyAI : Entity
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag(this.gameObject.tag)) { return; }
+        if (other.gameObject.CompareTag("Player")) { return; }
         IDamageable toDamage = other.gameObject.GetComponent<IDamageable>();
         if (toDamage == null) { return; }
 
-        toDamage.GetDamaged(15);
+        toDamage.GetDamaged(15, this.gameObject);
         gameObject.SetActive(false);
     }
 }

@@ -27,7 +27,7 @@ public class SwordManager : MonoBehaviour, IPickupable, IWeapon
             //hit.GetComponent<>
             //Debug.Log(hit.gameObject.name, this);
             IDamageable toDamage = hit.GetComponent<IDamageable>();
-            if (toDamage != null) { toDamage.GetDamaged(swordSO.Damage); }
+            if (toDamage != null) { toDamage.GetDamaged(swordSO.Damage, this.gameObject); }
 
 
 

@@ -18,10 +18,12 @@ public class GameManager
     public static void AddEnemyToList(GameObject _enemy)
     {
         enemiesActive.Add(_enemy);
+        Debug.Log("Adding " + _enemy.name);
     }
     public static void RemoveEnemyFromList(GameObject _enemy)
     {
         enemiesActive.Remove(_enemy);
+        Debug.Log("Removing " + _enemy.name);
     }
     public static bool LookForEnemies()
     {
@@ -29,6 +31,11 @@ public class GameManager
     }
     public static List<GameObject> GetAllActiveEnemies()
     {
+        foreach (GameObject _enemy in enemiesActive)
+        {
+            Debug.Log(_enemy.name, _enemy);
+            Debug.DrawLine(Vector3.zero, _enemy.transform.position);
+        }
         return enemiesActive;
     }
 }

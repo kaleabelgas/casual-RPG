@@ -10,7 +10,7 @@ public class GunSO : ScriptableObject
     [Range(0.01f, 2)]
     public float AttackSpeed;
     public int AttackPoints;
-    [Range(1, 100)]
+    [Range(1, 360)]
     public float Arc = 1;
     public float Radius = 1;
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public interface IDamageable
 {
     void SetHealth(int _health);
-    void GetDamaged(int _damage);
+    void GetDamaged(int _damage, GameObject _hitter);
     void GetHealed(int _heal);
     void Die();
 }

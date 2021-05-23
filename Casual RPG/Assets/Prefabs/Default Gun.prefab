@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunSO: {fileID: 11400000, guid: d375692a95a3d074987ee7d7e2536376, type: 2}
+  isFacingEnemy: 0
+  enemySearchDelay: 0
+  targetTag: Enemy
 --- !u!61 &-2884516365499354124
 BoxCollider2D:
   m_ObjectHideFlags: 0

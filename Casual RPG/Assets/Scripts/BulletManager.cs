@@ -44,29 +44,15 @@ public class BulletManager : MonoBehaviour
 
     private IEnumerator LookForEnemy(string _tag)
     {
-        Collider2D[] _targets;
-        List<GameObject> _targetObjects = new List<GameObject>();
+        List<GameObject> _targetObjects = GameManager.GetAllActiveEnemies();
         Transform _targetTransform = null;
-        float _distanceToTarget = 100;
+        float _distanceToTarget = bulletSO.SearchRadius;
         float _distance;
         Vector2 _directionOfTarget = lastDirection;
 
         while (true)
         {
             yield return searchDelay;
-
-            _targetObjects.Clear();
-
-            _targets = Physics2D.OverlapCircleAll(transform.position, bulletSO.SearchRadius);
-
-            foreach (Collider2D _target in _targets)
-            {
-                if (_target.gameObject.CompareTag(bulletSO.Target) && !_targetObjects.Contains(_target.gameObject))
-                {
-                    _targetObjects.Add(_target.gameObject);
-                    Debug.Log("Enemy Found");
-                }
-            }
 
             if (_targetObjects != null)
             {
@@ -78,7 +64,6 @@ public class BulletManager : MonoBehaviour
                     {
                         _distanceToTarget = _distance;
                         _targetTransform = _targetObjects[i].transform;
-
                         _directionOfTarget += (Vector2) (_targetTransform.position - transform.position) * bulletSO.Accuracy;
                         //_directionOfTarget += lastDirection * bulletSO.Accuracy;
                     }
@@ -95,20 +80,17 @@ public class BulletManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag(owner.tag))
         {
-            Debug.Log($"Hitting {other.name}, owner {owner.name}");
-            //gameObject.SetActive(false);
             return; 
         }
 
         IDamageable toDamage = other.gameObject.GetComponent<IDamageable>();
         if (toDamage == null)
         {
-            Debug.Log($"Hitting {other.name}, owner {owner.name}");
             gameObject.SetActive(false);
             return;
         }
 
-        toDamage.GetDamaged(bulletSO.Damage);
+        toDamage.GetDamaged(bulletSO.Damage, this.gameObject);
         Debug.Log(other.gameObject.name);
         gameObject.SetActive(false);
 

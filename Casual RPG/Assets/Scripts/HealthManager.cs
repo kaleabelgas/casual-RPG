@@ -9,11 +9,11 @@ public class HealthManager : MonoBehaviour, IDamageable
     private int healthDefault;
     public void Die()
     {
-        if (gameObject.tag.Equals("Enemy")) { GameManager.RemoveEnemyFromList(this.gameObject); }
+        if (gameObject.tag.Equals("Enemy")) { GameManager.RemoveEnemyFromList(gameObject); }
         gameObject.SetActive(false);
     }
 
-    public void GetDamaged(int _damage)
+    public void GetDamaged(int _damage, GameObject _hitter)
     {
         //Debug.Log(_damage);
         //Debug.Log(Health);
