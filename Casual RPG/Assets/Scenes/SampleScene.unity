@@ -290,6 +290,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27adc7d26cb9a224c8100286e6331ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &732776738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 732776739}
+  m_Layer: 0
+  m_Name: Waypoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &732776739
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732776738}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12, y: 14.520403, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1911368070}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1122049893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -386,15 +416,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 11400000, guid: 6edc49e76090dac4a97dbbf1e1a4f887, type: 2}
-  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
-  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
-  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
-  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
-  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
-  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
-  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
-  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
   - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
   timeBetweenEnemySpawn: 0.5
 --- !u!4 &1186900103
@@ -912,3 +933,34 @@ MonoBehaviour:
   towerUpgrades:
   - {fileID: 11400000, guid: b61c2fad4363c9b4987fd8a40874b535, type: 2}
   weaponHolder: {fileID: 689079350}
+--- !u!1 &1911368069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1911368070}
+  m_Layer: 0
+  m_Name: Waypoint Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1911368070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911368069}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 732776739}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

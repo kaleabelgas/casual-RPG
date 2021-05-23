@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tag: Enemy
   Health: 500
-  MoveSpeed: 1
+  MoveSpeed: 5

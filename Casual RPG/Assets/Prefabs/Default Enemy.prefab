@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisEntity: {fileID: 11400000, guid: ab373cfc2ad5a3e42a1b9950988776d7, type: 2}
   weaponHolder: {fileID: 882553881002845393}
-  healthManager: {fileID: 1781837380728080350}
+  waypoints: {fileID: 11400000, guid: 2f3b11ffe356b7b42af9774c9386496f, type: 2}
 --- !u!114 &1781837380728080350
 MonoBehaviour:
   m_ObjectHideFlags: 0

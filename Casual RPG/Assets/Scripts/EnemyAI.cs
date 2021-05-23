@@ -6,6 +6,11 @@ public class EnemyAI : Entity
 {
     private IMovement movement;
     [SerializeField] private WeaponHolder weaponHolder;
+    [SerializeField] private TransformPoints waypoints;
+    [SerializeField] private float threshold = .1f;
+
+    private int _currentWaypoint;
+    private bool hasReachedEnd;
     protected override void Awake()
     {
         base.Awake();
@@ -15,17 +20,45 @@ public class EnemyAI : Entity
 
     protected override void Start() => base.Start();
 
+    protected void OnEnable()
+    {
+        if(waypoints == null) { throw new System.Exception("WAYPOINTS NOT PROVIDED"); }
+        movement.SetMoveSpeed(thisEntity.MoveSpeed);
+        //Debug.Log("Position " + transform.position, this);
+    }
     private void Update()
     {
         if (weaponHolder.IsHoldingWeapon) { weaponHolder.UseWeapon(); }
+
+        if (!hasReachedEnd) { LookForWaypoints(); }
+
     }
 
-    protected void OnEnable()
+    private void LookForWaypoints()
     {
-        movement.SetMoveSpeed(thisEntity.MoveSpeed);
-        movement.SetMovement((Vector2.zero - (Vector2)transform.position).normalized);
-        Debug.Log("Position " + transform.position, this);
+        if (Vector3.Distance(waypoints.PointPositions[_currentWaypoint], transform.position) <= threshold)
+        {
+            UpdateDirection();
+            Debug.Log("Reached Waypoint");
+            return;
+        }
+        Vector2 targetDirection = waypoints.PointPositions[_currentWaypoint] - (Vector2)transform.position;
+        targetDirection.Normalize();
+        movement.SetMovement(targetDirection);
     }
+
+    private void UpdateDirection()
+    {
+        Vector2 targetDirection = waypoints.PointPositions[_currentWaypoint] - (Vector2) transform.position;
+        targetDirection.Normalize();
+        Debug.Log($"Target Direction {targetDirection}");
+        movement.SetMovement(targetDirection);
+        _currentWaypoint++;
+
+        hasReachedEnd = _currentWaypoint + 1 > waypoints.PointPositions.Length;
+        if (hasReachedEnd) { movement.SetMovement(Vector2.zero); }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {

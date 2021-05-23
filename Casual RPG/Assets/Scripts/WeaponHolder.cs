@@ -20,7 +20,7 @@ public class WeaponHolder : MonoBehaviour
         if(transform.childCount == 0) { return; }
         currentWeapon = transform.GetChild(0).gameObject.GetComponent<IWeapon>();
         heldItem = transform.GetChild(0).gameObject.GetComponent<IPickupable>();
-        Debug.Log(transform.GetChild(0).name);
+        //Debug.Log(transform.GetChild(0).name);
     }
     private void Start()
     {

@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3fac599ede824d4fab07b3c3330adb7, type: 3}
-  m_Name: Homing Bullet 1
+  m_Script: {fileID: 11500000, guid: 9e234e58acf4ada4492da2ae9d092909, type: 3}
+  m_Name: Waypoints
   m_EditorClassIdentifier: 
-  Tag: Bullet
-  Damage: 10
-  Speed: 40
-  IsHoming: 1
-  Target: Enemy
-  SearchDelay: 0.1
-  SearchRadius: 50
-  Accuracy: 0.927
+  PointPositions:
+  - {x: 0, y: 10}
+  - {x: 10, y: 10}
