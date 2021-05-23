@@ -347,7 +347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5322832409806736770, guid: 2713f14008fc6b445a92d8dba44a8c63, type: 3}
       propertyPath: shouldFaceEnemy
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2713f14008fc6b445a92d8dba44a8c63, type: 3}
@@ -387,6 +387,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - {fileID: 11400000, guid: 6edc49e76090dac4a97dbbf1e1a4f887, type: 2}
+  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
+  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
+  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
+  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
+  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
+  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
+  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
+  - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
   - {fileID: 11400000, guid: 11711f1fda5f347499feec26bcb9fb34, type: 2}
   timeBetweenEnemySpawn: 0.5
 --- !u!4 &1186900103
@@ -497,6 +505,9 @@ MonoBehaviour:
   - tag: Default Bullet
     objectPrefab: {fileID: 4601630397369010829, guid: db8f7f278cb6b6d4c8771d433b4b1792, type: 3}
     poolSize: 1000
+  - tag: Homing Bullet 1
+    objectPrefab: {fileID: 4601630397369010829, guid: dbb3768fc7278c049a0b7bbc6fcfca2b, type: 3}
+    poolSize: 1000
   - tag: Default Enemy
     objectPrefab: {fileID: 1781837380728080339, guid: b3b2a38138c5c014f87f80d3e237570f, type: 3}
     poolSize: 20
@@ -521,6 +532,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7167207226684864065, guid: 08271d0e80b5bd948844b446485860d7, type: 3}
+      propertyPath: gunSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 15265f6019347dd4bafc2705a7320efa, type: 2}
     - target: {fileID: 7167207226684864067, guid: 08271d0e80b5bd948844b446485860d7, type: 3}
       propertyPath: m_RootOrder
       value: 6

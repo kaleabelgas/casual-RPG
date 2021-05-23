@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3fac599ede824d4fab07b3c3330adb7, type: 3}
-  m_Name: Default Bullet
+  m_Script: {fileID: 11500000, guid: e177c56b0a913c84dbdef0f844414445, type: 3}
+  m_Name: Turret Gun 4
   m_EditorClassIdentifier: 
-  Tag: Bullet
-  Damage: 10
-  Speed: 40
-  IsHoming: 0
-  Target: Enemy
-  SearchDelay: 0.1
-  SearchRadius: 50
-  Accuracy: 0.514
+  Tag: Gun
+  BulletUsed: Homing Bullet 1
+  AttackSpeed: 0.1
+  AttackPoints: 40
+  Arc: 360
+  Radius: 1
+  ChanceToDrop: 2

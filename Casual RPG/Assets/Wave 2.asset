@@ -18,4 +18,4 @@ MonoBehaviour:
     max: 1
   TimeBeforeWave: 2
   spawnPoints:
-  - {x: 9.08, y: -19.63}
+  - {x: -9.7, y: -2.73}
