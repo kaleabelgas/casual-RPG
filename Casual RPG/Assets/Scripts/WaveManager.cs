@@ -6,6 +6,7 @@ public class WaveManager : MonoBehaviour
 {
     [SerializeField] private Wave[] waves;
     [SerializeField] private float timeBetweenEnemySpawn;
+    [SerializeField] private TransformPoints wayPoints;
     private int _currentWave;
     private float _timeToNextWave;
 
@@ -13,8 +14,16 @@ public class WaveManager : MonoBehaviour
     {
         StartCoroutine(StartWave());
     }
+
+    [ContextMenu("Restart Wave")]
+    private void RestartWaves()
+    {
+        StartCoroutine(StartWave());
+    }
+
     private IEnumerator StartWave()
     {
+        _currentWave = 0;
         while (true)
         {
 
@@ -24,17 +33,14 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(_timeToNextWave);
 
 
-
-            for (int i = 0; i < waves[_currentWave].spawnPoints.Length; i++)
+            List<GameObject> enemies = waves[_currentWave].SpawnEnemies();
+            foreach (GameObject enemy in enemies)
             {
-                List<GameObject> enemies = waves[_currentWave].SpawnEnemies();
-                foreach (GameObject enemy in enemies)
-                {
-                    enemy.transform.position = waves[_currentWave].spawnPoints[i];
-                    enemy.SetActive(true);
-                    GameManager.AddEnemyToList(enemy);
-                    yield return new WaitForSeconds(timeBetweenEnemySpawn);
-                }
+                enemy.transform.position = transform.position;
+                enemy.GetComponent<EnemyAI>().SetWayPoints(wayPoints);
+                enemy.SetActive(true);
+                GameManager.AddEnemyToList(enemy);
+                yield return new WaitForSeconds(timeBetweenEnemySpawn);
             }
 
             _currentWave++;

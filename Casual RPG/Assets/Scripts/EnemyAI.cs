@@ -6,8 +6,9 @@ public class EnemyAI : Entity
 {
     private IMovement movement;
     [SerializeField] private WeaponHolder weaponHolder;
-    [SerializeField] private TransformPoints waypoints;
     [SerializeField] private float threshold = .1f;
+
+    private TransformPoints waypoints;
 
     private int _currentWaypoint;
     private bool hasReachedEnd;
@@ -32,6 +33,11 @@ public class EnemyAI : Entity
 
         if (!hasReachedEnd) { LookForWaypoints(); }
 
+    }
+
+    public void SetWayPoints(TransformPoints transformPoints)
+    {
+        waypoints = transformPoints;
     }
 
     private void LookForWaypoints()

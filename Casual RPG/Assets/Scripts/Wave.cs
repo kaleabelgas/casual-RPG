@@ -15,7 +15,6 @@ public class Wave : ScriptableObject
 {
     [SerializeField] private EnemyContainer[] prefabs;
     public float TimeBeforeWave;
-    public Vector2[] spawnPoints;
 
     public List<GameObject> SpawnEnemies()
     {
