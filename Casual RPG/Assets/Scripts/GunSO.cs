@@ -14,4 +14,5 @@ public class GunSO : ScriptableObject
     public float Arc = 1;
     public float Radius = 1;
     public float ChanceToDrop;
+    public float DespawnTime;
 }

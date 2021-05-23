@@ -9,6 +9,7 @@ public class GunManager : MonoBehaviour, IPickupable, IWeapon
     private ObjectPooler objectPooler;
 
     private float attackTimer;
+    private float despawnClock;
     private bool isEquipped;
     private Vector3 point;
     private Vector2 direction;
@@ -16,10 +17,13 @@ public class GunManager : MonoBehaviour, IPickupable, IWeapon
     private void Start()
     {
         objectPooler = ObjectPooler.Instance;
+        despawnClock = gunSO.DespawnTime;
     }
     private void Update()
     {
         attackTimer -= Time.deltaTime;
+        if (!isEquipped) { despawnClock -= Time.deltaTime; }
+        if(despawnClock <= 0) { Destroy(gameObject, 1); }
     }
 
     public void Attack()
@@ -54,6 +58,7 @@ public class GunManager : MonoBehaviour, IPickupable, IWeapon
         transform.position = _parent.position;
         transform.rotation = _parent.rotation;
         isEquipped = true;
+        despawnClock = gunSO.DespawnTime;
     }
 
 

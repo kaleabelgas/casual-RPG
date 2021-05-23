@@ -19,3 +19,4 @@ MonoBehaviour:
   Arc: 1
   Radius: 1
   ChanceToDrop: 100
+  DespawnTime: 100

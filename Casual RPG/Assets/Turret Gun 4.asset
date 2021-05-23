@@ -19,3 +19,4 @@ MonoBehaviour:
   Arc: 360
   Radius: 1
   ChanceToDrop: 2
+  DespawnTime: 100
