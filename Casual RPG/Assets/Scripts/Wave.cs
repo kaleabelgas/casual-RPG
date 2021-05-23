@@ -24,7 +24,7 @@ public class Wave : ScriptableObject
             var numEnemies = Random.Range(enemy.min, enemy.max);
             for (int i = 0; i < numEnemies; i++)
             {
-                GameObject _toReturn = ObjectPooler.Instance.SpawnFromPool(enemy.Prefab, Vector2.zero, Quaternion.identity);
+                GameObject _toReturn = ObjectPooler.Instance.SpawnFromPool(enemy.Prefab, Vector2.down * 100, Quaternion.identity);
                 _toReturn.SetActive(false);
                 toReturn.Add(_toReturn);
             }

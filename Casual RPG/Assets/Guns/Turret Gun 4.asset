@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b87f4af04ef15b6409aaf5f24bff59b1, type: 3}
-  m_Name: Wave 2
+  m_Script: {fileID: 11500000, guid: e177c56b0a913c84dbdef0f844414445, type: 3}
+  m_Name: Turret Gun 4
   m_EditorClassIdentifier: 
-  prefabs:
-  - Prefab: Default Enemy
-    min: 10
-    max: 10
-  TimeBeforeWave: 2
-  spawnPoints:
-  - {x: -9.7, y: -2.73}
-  - {x: 10, y: 5}
+  Tag: Gun
+  BulletUsed: Homing Bullet 1
+  AttackSpeed: 0.09
+  AttackPoints: 40
+  Arc: 360
+  Radius: 2
+  ChanceToDrop: 2
+  DespawnTime: 100

@@ -24,16 +24,25 @@ public class WeaponHolder : MonoBehaviour
     }
     private void Start()
     {
+        if(heldItem == null) { throw new System.Exception("HELDTHING IS NULL"); }
         if (transform.childCount == 0) { return; }
         heldItemObject = transform.GetChild(0).gameObject;
-        IsHoldingWeapon = transform.childCount > 0;
-        if(heldItem == null) { throw new System.Exception("HELDTHING IS NULL"); }
         heldItem.PickUp(transform);
     }
 
     private void Update()
     {
         if (shouldFaceEnemy) { FaceEnemy(); }
+
+        IsHoldingWeapon = transform.childCount > 0;
+
+        if (!IsHoldingWeapon)
+        {
+
+            heldItemObject = null;
+            currentWeapon = null;
+            heldItem = null;
+        }
     }
     public void UseWeapon()
     {

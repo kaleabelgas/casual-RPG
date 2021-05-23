@@ -31,11 +31,6 @@ public class GameManager
     }
     public static List<GameObject> GetAllActiveEnemies()
     {
-        foreach (GameObject _enemy in enemiesActive)
-        {
-            //Debug.Log(_enemy.name, _enemy);
-            Debug.DrawLine(Vector3.zero, _enemy.transform.position);
-        }
         return enemiesActive;
     }
 }

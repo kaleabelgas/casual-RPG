@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2748cb705d5d394da59c95d90f9bf04, type: 3}
-  m_Name: Default Enemy
+  m_Script: {fileID: 11500000, guid: 9e234e58acf4ada4492da2ae9d092909, type: 3}
+  m_Name: Path 1
   m_EditorClassIdentifier: 
-  Tag: Enemy
-  Health: 500
-  MoveSpeed: 1
+  PointPositions:
+  - {x: -14, y: 0}
+  - {x: 0, y: 0}

@@ -23,7 +23,6 @@ public class EnemyAI : Entity
 
     protected void OnEnable()
     {
-        if(waypoints == null) { throw new System.Exception("WAYPOINTS NOT PROVIDED"); }
         movement.SetMoveSpeed(thisEntity.MoveSpeed);
         //Debug.Log("Position " + transform.position, this);
     }
@@ -38,6 +37,7 @@ public class EnemyAI : Entity
     public void SetWayPoints(TransformPoints transformPoints)
     {
         waypoints = transformPoints;
+        _currentWaypoint = 0;
     }
 
     private void LookForWaypoints()
@@ -81,5 +81,6 @@ public class EnemyAI : Entity
     {
         movement.SetMoveSpeed(0);
         movement.SetMovement(Vector2.zero);
+        waypoints = null;
     }
 }

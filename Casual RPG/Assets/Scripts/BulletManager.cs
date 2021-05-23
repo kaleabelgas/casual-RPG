@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +7,9 @@ public class BulletManager : MonoBehaviour
     [SerializeField] private BulletSO bulletSO;
     [SerializeField] private IMovement movement;
 
-    private const float lifetimeconst = 2;
+    private const float lifetimeconst = 2f;
     private float lifetime;
     private GameObject owner;
-    private WaitForSeconds searchDelay;
 
     private Vector2 lastDirection;
     private void Awake()
@@ -21,7 +19,6 @@ public class BulletManager : MonoBehaviour
     private void Start()
     {
         gameObject.tag = bulletSO.Tag;
-        searchDelay = new WaitForSeconds(bulletSO.SearchDelay);
     }
     private void OnEnable()
     {
@@ -34,7 +31,7 @@ public class BulletManager : MonoBehaviour
     {
         lifetime -= Time.deltaTime;
 
-        if(lifetime <= 0) { gameObject.SetActive(false); }
+        if (lifetime <= 0) { gameObject.SetActive(false); }
     }
 
     public void SetBulletDirection(Vector2 _direction)
@@ -62,27 +59,26 @@ public class BulletManager : MonoBehaviour
 
         while (true)
         {
-            yield return searchDelay;
+            _targetObjects = GameManager.GetAllActiveEnemies();
+            if (_targetObjects == null) { yield break; }
 
-            if (_targetObjects != null)
+            for (int i = 0; i < _targetObjects.Count; i++)
             {
-                for (int i = 0; i < _targetObjects.Count; i++)
-                {
-                    _distance = Vector2.Distance(_targetObjects[i].transform.position, transform.position);
+                _distance = Vector2.Distance(_targetObjects[i].transform.position, transform.position);
 
-                    if (_distance < _distanceToTarget)
-                    {
-                        _distanceToTarget = _distance;
-                        _targetTransform = _targetObjects[i].transform;
-                        _directionOfTarget += (Vector2) (_targetTransform.position - transform.position) * bulletSO.Accuracy;
-                        //_directionOfTarget += lastDirection * bulletSO.Accuracy;
-                    }
-                    if (_targetTransform == null) { yield break; }
+                if (_distance < _distanceToTarget)
+                {
+                    _distanceToTarget = _distance;
+                    _targetTransform = _targetObjects[i].transform;
+                    if (_targetTransform == null) { continue; }
+                    _directionOfTarget += (Vector2)(_targetTransform.position - transform.position) * bulletSO.Accuracy;
                 }
             }
+
             _directionOfTarget.Normalize();
             movement.SetMovement(_directionOfTarget);
             lastDirection = _directionOfTarget;
+            yield return null;
         }
     }
 
@@ -90,7 +86,7 @@ public class BulletManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag(owner.tag))
         {
-            return; 
+            return;
         }
 
         IDamageable toDamage = other.gameObject.GetComponent<IDamageable>();
