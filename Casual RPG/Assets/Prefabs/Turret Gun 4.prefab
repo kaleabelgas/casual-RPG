@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 7167207226684864067}
   - component: {fileID: 7167207226684864065}
   - component: {fileID: -2884516365499354124}
+  - component: {fileID: 2250930565688141088}
   m_Layer: 6
   m_Name: Turret Gun 4
   m_TagString: Gun
@@ -154,3 +155,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2250930565688141088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7167207226684864068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94515126f402fd64d8d324b8711493ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunSO: {fileID: 11400000, guid: 15265f6019347dd4bafc2705a7320efa, type: 2}

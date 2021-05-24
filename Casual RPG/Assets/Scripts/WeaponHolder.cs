@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class WeaponHolder : MonoBehaviour
 {
-    public bool IsHoldingWeapon { get; private set; }
 
-    private IPickupable heldItem;
-    private GameObject heldItemObject;
-    private IWeapon currentWeapon;
+    private Weapon currentWeapon;
 
     [SerializeField] private float enemySearchDelay;
     [SerializeField] bool shouldFaceEnemy;
@@ -16,71 +13,50 @@ public class WeaponHolder : MonoBehaviour
     private GameObject _target;
     private float _enemySearchDelay;
 
-    private void Awake()
-    {
-        if(transform.childCount == 0) { return; }
-        currentWeapon = transform.GetChild(0).gameObject.GetComponent<IWeapon>();
-        heldItem = transform.GetChild(0).gameObject.GetComponent<IPickupable>();
-        //Debug.Log(transform.GetChild(0).name);
-    }
-    private void Start()
-    {
-        if(heldItem == null) { throw new System.Exception("HELDTHING IS NULL"); }
-        if (transform.childCount == 0) { return; }
-        heldItemObject = transform.GetChild(0).gameObject;
-        heldItem.PickUp(transform);
-    }
+
+
 
     private void Update()
     {
         if (shouldFaceEnemy) { FaceEnemy(); }
-
-        IsHoldingWeapon = transform.childCount > 0;
-
-        if (!IsHoldingWeapon)
-        {
-
-            heldItemObject = null;
-            currentWeapon = null;
-            heldItem = null;
-        }
     }
     public void UseWeapon()
     {
-        if (currentWeapon == null) { return; }
+        if (currentWeapon == null)
+        {
+            Debug.LogWarning("Current Weapon is Null", this);
+            return;
+        }
         currentWeapon.Attack();
+
+    }
+
+    public bool IsHoldingWeapon()
+    {
+        return currentWeapon != null;
     }
 
     public void GiveWeaponToTower()
     {
         Collider2D[] towers = Physics2D.OverlapCircleAll(transform.position, 2);
 
-        foreach(Collider2D tower in towers)
+        foreach (Collider2D tower in towers)
         {
             if (!tower.gameObject.CompareTag("Tower")) { continue; }
-            IsHoldingWeapon = false;
 
             WeaponHolder weaponHolderTower = tower.gameObject.GetComponentInChildren<WeaponHolder>();
-            weaponHolderTower.ReceiveWeapon(heldItemObject);
-            heldItemObject = null;
-            currentWeapon = null;
-            heldItem = null;
+            weaponHolderTower.ReceiveWeapon(currentWeapon);
             break;
         }
     }
-    public void ReceiveWeapon(GameObject _weapon)
+    public void ReceiveWeapon(Weapon _weapon)
     {
-        if(_weapon == null) { return; }
+        if (_weapon == null) { return; }
         if (!isAcceptingWeapon) { return; }
-        DropCurrentWeapon();
-        _weapon.transform.SetParent(transform);
-        _weapon.transform.position = transform.position;
-        _weapon.transform.rotation = transform.rotation;
-        heldItemObject = _weapon;
-        heldItem = _weapon.GetComponent<IPickupable>();
-        currentWeapon = _weapon.GetComponent<IWeapon>();
+        if (currentWeapon != null) { DropCurrentWeapon(); }
+        _weapon.PickUp(transform);
 
-        IsHoldingWeapon = true;
+        currentWeapon = _weapon;
     }
 
     private void FaceEnemy()
@@ -136,20 +112,15 @@ public class WeaponHolder : MonoBehaviour
 
         foreach (Collider2D _weapon in _weapons)
         {
-            IPickupable thingOnGround = _weapon.gameObject.GetComponent<IPickupable>();
+            Weapon _weaponOnGround = _weapon.gameObject.GetComponent<Weapon>();
 
-            if (thingOnGround == null) { continue; }
-            if (_weapon.gameObject == heldItemObject) { continue; }
+            if (_weaponOnGround == null) { continue; }
+            if (currentWeapon != null && _weaponOnGround.gameObject.Equals(currentWeapon.gameObject)) { continue; }
 
+            if (currentWeapon != null) { DropCurrentWeapon(); }
 
-            if (IsHoldingWeapon) { DropCurrentWeapon(); }
-
-            heldItem = thingOnGround;
-            heldItem.PickUp(transform);
-            heldItemObject = _weapon.gameObject;
-
-            currentWeapon = _weapon.gameObject.GetComponent<IWeapon>();
-            IsHoldingWeapon = true;
+            _weaponOnGround.PickUp(transform);
+            currentWeapon = _weaponOnGround;
 
             break;
         }
@@ -157,12 +128,9 @@ public class WeaponHolder : MonoBehaviour
     public void DropCurrentWeapon()
     {
         if (transform.childCount <= 0) { return; }
-        IsHoldingWeapon = false;
-
-        heldItem.Drop();
-        heldItemObject = null;
+        currentWeapon.Drop();
         currentWeapon = null;
-        heldItem = null;
+
         //Debug.Log("drop");
     }
 }

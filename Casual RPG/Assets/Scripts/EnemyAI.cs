@@ -7,6 +7,7 @@ public class EnemyAI : Entity
     private IMovement movement;
     [SerializeField] private WeaponHolder weaponHolder;
     [SerializeField] private float threshold = .1f;
+    [SerializeField] private GameObject weaponToUse;
 
     private TransformPoints waypoints;
 
@@ -24,11 +25,13 @@ public class EnemyAI : Entity
     protected void OnEnable()
     {
         movement.SetMoveSpeed(thisEntity.MoveSpeed);
-        //Debug.Log("Position " + transform.position, this);
+        if (weaponHolder.IsHoldingWeapon()) { return; }
+        GameObject _weapon = Instantiate(weaponToUse, weaponHolder.transform);
+        weaponHolder.ReceiveWeapon(_weapon.GetComponent<Weapon>());
     }
     private void Update()
     {
-        if (weaponHolder.IsHoldingWeapon) { weaponHolder.UseWeapon(); }
+        weaponHolder.UseWeapon();
 
         if (!hasReachedEnd) { LookForWaypoints(); }
 

@@ -11,6 +11,7 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     public void Die()
     {
         OnPlayerDeath?.Invoke();
+        SetHealth(healthDefault);
     }
 
     public void GetDamaged(int _damage, GameObject _hitter, GameObject _owner)

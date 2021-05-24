@@ -2,33 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunManager : MonoBehaviour, IPickupable, IWeapon
+
+public class GunManager : MonoBehaviour, IWeapon
 
 {
     [SerializeField] private GunSO gunSO;
     private ObjectPooler objectPooler;
 
     private float attackTimer;
-    private float despawnClock;
-    private bool isEquipped;
     private Vector3 point;
     private Vector2 direction;
 
     private void Start()
     {
         objectPooler = ObjectPooler.Instance;
-        despawnClock = gunSO.DespawnTime;
     }
     private void Update()
     {
         attackTimer -= Time.deltaTime;
-        if (!isEquipped) { despawnClock -= Time.deltaTime; }
-        if(despawnClock <= 0) { Destroy(gameObject, 1); }
     }
 
     public void Attack()
     {
-        if (!isEquipped) { return; }
         if (attackTimer > 0) { return; }
 
         for (int i = 0; i < gunSO.AttackPoints; i++)
@@ -45,6 +40,7 @@ public class GunManager : MonoBehaviour, IPickupable, IWeapon
             GameObject toShoot = objectPooler.SpawnFromPool(gunSO.BulletUsed, point, Quaternion.identity);
             if (toShoot == null) { return; }
             BulletManager bm = toShoot.GetComponent<BulletManager>();
+            Debug.Log(transform.parent.parent.gameObject.name);
             bm.SetOwner(transform.parent.parent.gameObject);
             bm.SetBulletDirection(direction);
         }
@@ -52,26 +48,4 @@ public class GunManager : MonoBehaviour, IPickupable, IWeapon
         attackTimer = gunSO.AttackSpeed;
     }
 
-    public void PickUp(Transform _parent)
-    {
-        transform.SetParent(_parent);
-        transform.position = _parent.position;
-        transform.rotation = _parent.rotation;
-        isEquipped = true;
-        despawnClock = gunSO.DespawnTime;
-    }
-
-
-    public void Drop()
-    {
-        Transform owner = transform.parent.parent;
-        transform.SetParent(null);
-        transform.position = (Vector2) transform.position + Vector2.down ;
-        isEquipped = false;
-
-        if (owner.CompareTag("Player")) { return; }
-
-        float randomNumber = Random.Range(0, 100);
-        if(randomNumber > gunSO.ChanceToDrop) { Destroy(gameObject); }
-    }
 }

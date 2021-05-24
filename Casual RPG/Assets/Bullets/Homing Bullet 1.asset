@@ -18,5 +18,5 @@ MonoBehaviour:
   IsHoming: 1
   Target: Enemy
   SearchDelay: 0
-  SearchRadius: 5
+  SearchRadius: 50
   Accuracy: 0.5

@@ -622,6 +622,7 @@ MonoBehaviour:
   thisEntity: {fileID: 11400000, guid: 2a29a43f538e49644bdfe75c2a5c339d, type: 2}
   weaponHolder: {fileID: 275273751}
   playerHealthManager: {fileID: 1650608349}
+  padLocation: {fileID: 1684453309}
 --- !u!1 &1684453307
 GameObject:
   m_ObjectHideFlags: 0

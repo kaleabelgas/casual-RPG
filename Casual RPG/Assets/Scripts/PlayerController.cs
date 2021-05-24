@@ -9,6 +9,8 @@ public class PlayerController : Entity
 
     [SerializeField] private PlayerHealthManager playerHealthManager;
 
+    [SerializeField] private Transform padLocation;
+
     protected override void Awake()
     {
         movement = GetComponent<IMovement>();
@@ -17,6 +19,12 @@ public class PlayerController : Entity
     {
         playerHealthManager.SetHealth(thisEntity.Health);
         movement.SetMoveSpeed(thisEntity.MoveSpeed);
+        playerHealthManager.OnPlayerDeath += TeleportToPad;
+    }
+
+    private void TeleportToPad()
+    {
+        transform.position = padLocation.position;
     }
 
     private void Update()
