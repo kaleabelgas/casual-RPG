@@ -808,6 +808,7 @@ MonoBehaviour:
   towerUpgrades:
   - {fileID: 11400000, guid: b61c2fad4363c9b4987fd8a40874b535, type: 2}
   weaponHolder: {fileID: 1754065617}
+  isMainTower: 1
 --- !u!1001 &1754065615
 PrefabInstance:
   m_ObjectHideFlags: 0

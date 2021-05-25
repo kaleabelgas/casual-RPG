@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Homing Bullet 1
   m_EditorClassIdentifier: 
   Tag: Bullet
-  Damage: 10
+  Damage: 1
   Speed: 20
   IsHoming: 1
   Target: Enemy
   SearchDelay: 0
-  SearchRadius: 50
-  Accuracy: 0.5
+  SearchRadius: 10
+  Accuracy: 0.068

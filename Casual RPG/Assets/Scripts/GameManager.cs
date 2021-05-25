@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GAME LOST");
         StopCoroutine(CheckWinGame());
+        Time.timeScale = 0;
     }
 
     private IEnumerator CheckWinGame()
