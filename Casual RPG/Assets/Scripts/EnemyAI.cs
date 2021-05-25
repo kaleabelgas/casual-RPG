@@ -48,7 +48,7 @@ public class EnemyAI : Entity
         if (Vector3.Distance(waypoints.PointPositions[_currentWaypoint], transform.position) <= threshold)
         {
             UpdateDirection();
-            Debug.Log("Reached Waypoint");
+            //Debug.Log("Reached Waypoint");
             return;
         }
         Vector2 targetDirection = waypoints.PointPositions[_currentWaypoint] - (Vector2)transform.position;
@@ -60,7 +60,7 @@ public class EnemyAI : Entity
     {
         Vector2 targetDirection = waypoints.PointPositions[_currentWaypoint] - (Vector2) transform.position;
         targetDirection.Normalize();
-        Debug.Log($"Target Direction {targetDirection}");
+        //Debug.Log($"Target Direction {targetDirection}");
         movement.SetMovement(targetDirection);
         _currentWaypoint++;
 

@@ -40,7 +40,7 @@ public class GunManager : MonoBehaviour, IWeapon
             GameObject toShoot = objectPooler.SpawnFromPool(gunSO.BulletUsed, point, Quaternion.identity);
             if (toShoot == null) { return; }
             BulletManager bm = toShoot.GetComponent<BulletManager>();
-            Debug.Log(transform.parent.parent.gameObject.name);
+            //Debug.Log(transform.parent.parent.gameObject.name);
             bm.SetOwner(transform.parent.parent.gameObject);
             bm.SetBulletDirection(direction);
         }

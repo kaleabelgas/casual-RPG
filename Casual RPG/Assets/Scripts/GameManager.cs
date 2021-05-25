@@ -18,7 +18,7 @@ public class GameManager
     public static void AddEnemyToList(GameObject _enemy)
     {
         enemiesActive.Add(_enemy);
-        Debug.Log("Adding " + _enemy.name);
+        //Debug.Log("Adding " + _enemy.name);
     }
     public static void RemoveEnemyFromList(GameObject _enemy)
     {

@@ -168,3 +168,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunSO: {fileID: 11400000, guid: 15265f6019347dd4bafc2705a7320efa, type: 2}
+  weaponRenderer: {fileID: 2722013026634162054}
+  despawnTime: 10

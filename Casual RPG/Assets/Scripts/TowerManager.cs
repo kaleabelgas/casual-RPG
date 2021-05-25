@@ -36,7 +36,7 @@ public class TowerManager : MonoBehaviour, IDamageable
     public void Die()
     {
         OnTowerDeath?.Invoke();
-        Debug.Log("TOWER DESTROYED");
+        //Debug.Log("TOWER DESTROYED");
     }
 
     public void GetDamaged(int _damage, GameObject _hitter, GameObject _owner)
@@ -44,7 +44,7 @@ public class TowerManager : MonoBehaviour, IDamageable
         if (!_hitter.tag.Equals("Enemy")) { return; }
         CurrentTowerHealth = Mathf.Max(0, CurrentTowerHealth - _damage);
         if(CurrentTowerHealth <= 0) { Die(); }
-        Debug.Log(CurrentTowerHealth);
+        //Debug.Log(CurrentTowerHealth);
     }
 
     public void GetHealed(int _heal)

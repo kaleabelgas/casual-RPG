@@ -98,7 +98,7 @@ public class BulletManager : MonoBehaviour
 
         //Debug.Log($"Hitting {other.gameObject.name} with bullet from {owner.name}");
         toDamage.GetDamaged(bulletSO.Damage, this.gameObject, owner);
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
         gameObject.SetActive(false);
 
     }
