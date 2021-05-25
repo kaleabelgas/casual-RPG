@@ -1,36 +1,79 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager
+public class GameManager : MonoBehaviour
 {
-    private static List<GameObject> enemiesActive = new List<GameObject>();
-    private static List<GameObject> bulletsActive = new List<GameObject>();
+    public enum ObjectLists
+    {
+        bullet,
+        enemy
+    }
+    public static GameManager Instance;
 
-    public static void AddBulletToList(GameObject _bullet)
+    private List<GameObject> enemiesActive = new List<GameObject>();
+    private List<GameObject> bulletsActive = new List<GameObject>();
+
+    private Dictionary<ObjectLists, List<GameObject>> listOfObjects;
+
+
+    private void Awake()
     {
-        bulletsActive.Add(_bullet);
+        Instance = this;
+
+        listOfObjects = new Dictionary<ObjectLists, List<GameObject>>();
+
+        foreach (var objectList in (ObjectLists[]) Enum.GetValues(typeof(ObjectLists)))
+        {
+            List<GameObject> gameobjects = new List<GameObject>();
+            listOfObjects.Add(objectList, gameobjects);
+        }
     }
-    public static void RemoveBulletFromList(GameObject _bullet)
+
+
+    public void AddObjectToList(ObjectLists _list, GameObject _object)
     {
-        bulletsActive.Remove(_bullet);
+        listOfObjects[_list].Add(_object);
     }
-    public static void AddEnemyToList(GameObject _enemy)
+
+    public void RemoveObjectFromList(ObjectLists _list, GameObject _object)
     {
-        enemiesActive.Add(_enemy);
-        //Debug.Log("Adding " + _enemy.name);
+        listOfObjects[_list].Remove(_object);
     }
-    public static void RemoveEnemyFromList(GameObject _enemy)
+
+    public List<GameObject> GetAllObjectsAsList(ObjectLists _list)
     {
-        enemiesActive.Remove(_enemy);
-        //Debug.Log("Removing " + _enemy.name);
+        return listOfObjects[_list];
     }
-    public static bool LookForEnemies()
+
+    public bool CheckObjectsInList(ObjectLists _list)
     {
-        return enemiesActive.Count > 0;
+        return listOfObjects[_list].Count > 0;
     }
-    public static List<GameObject> GetAllActiveEnemies()
+
+    public Transform GetClosestObject(ObjectLists _list, Transform _transform, float _searchRadius)
     {
-        return enemiesActive;
+        if (!CheckObjectsInList(_list)) { return null; }
+
+        List<GameObject> _targetObjects = listOfObjects[_list];
+
+        Transform _targetTransform = null;
+
+        float _distanceToObject;
+
+        float _shortestDistance = _searchRadius;
+
+        for (int i = 0; i < _targetObjects.Count; i++)
+        {
+            _distanceToObject = Vector2.Distance(_targetObjects[i].transform.position, _transform.position);
+
+            if (_distanceToObject < _shortestDistance)
+            {
+                _shortestDistance = _distanceToObject;
+                _targetTransform = _targetObjects[i].transform;
+            }
+        }
+        return _targetTransform;
     }
 }

@@ -39,7 +39,7 @@ public class WaveManager : MonoBehaviour
                 enemy.transform.position = transform.position;
                 enemy.GetComponent<EnemyAI>().SetWayPoints(wayPoints);
                 enemy.SetActive(true);
-                GameManager.AddEnemyToList(enemy);
+                GameManager.Instance.AddObjectToList(GameManager.ObjectLists.enemy, enemy);
                 yield return new WaitForSeconds(timeBetweenEnemySpawn);
             }
 

@@ -12,10 +12,10 @@ public class ObjectPooler : MonoBehaviour
         public int poolSize;
     }
 
-    #region Singleton
-
     public static ObjectPooler Instance;
 
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    public List<Pool> pools;
     private void Awake()
     {
         Instance = this;
@@ -36,10 +36,6 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    #endregion
-
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
-    public List<Pool> pools;
 
     public GameObject SpawnFromPool(string tag, Vector2 position, Quaternion rotation)
     {

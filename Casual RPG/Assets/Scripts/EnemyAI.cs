@@ -85,5 +85,6 @@ public class EnemyAI : Entity
         movement.SetMoveSpeed(0);
         movement.SetMovement(Vector2.zero);
         waypoints = null;
+        GameManager.Instance.RemoveObjectFromList(GameManager.ObjectLists.enemy, gameObject);
     }
 }

@@ -86,7 +86,7 @@ public class WeaponHolder : MonoBehaviour
     private GameObject LookForClosestEnemy()
     {
         GameObject _closestEnemy = null;
-        List<GameObject> _enemies = GameManager.GetAllActiveEnemies();
+        List<GameObject> _enemies = GameManager.Instance.GetAllObjectsAsList(GameManager.ObjectLists.enemy);
 
         if (_enemies == null) { return null; }
         float _closestDistance = 100;

@@ -23,7 +23,7 @@ public class BulletManager : MonoBehaviour
     private void OnEnable()
     {
         movement.SetMoveSpeed(bulletSO.Speed);
-        GameManager.AddBulletToList(this.gameObject);
+        GameManager.Instance.AddObjectToList(GameManager.ObjectLists.bullet, gameObject);
         lifetime = lifetimeconst;
     }
 
@@ -51,7 +51,7 @@ public class BulletManager : MonoBehaviour
 
     private IEnumerator LookForEnemy()
     {
-        List<GameObject> _targetObjects = GameManager.GetAllActiveEnemies();
+        List<GameObject> _targetObjects = GameManager.Instance.GetAllObjectsAsList(GameManager.ObjectLists.enemy);
         Transform _targetTransform = null;
         float _distanceToTarget = bulletSO.SearchRadius;
         float _distance;
@@ -59,7 +59,7 @@ public class BulletManager : MonoBehaviour
 
         while (true)
         {
-            _targetObjects = GameManager.GetAllActiveEnemies();
+            _targetObjects = GameManager.Instance.GetAllObjectsAsList(GameManager.ObjectLists.enemy);
             if (_targetObjects == null) { yield break; }
 
             for (int i = 0; i < _targetObjects.Count; i++)
@@ -106,6 +106,6 @@ public class BulletManager : MonoBehaviour
     {
         movement.SetMoveSpeed(0);
         //owner = gameObject;
-        GameManager.RemoveBulletFromList(this.gameObject);
+        GameManager.Instance.RemoveObjectFromList(GameManager.ObjectLists.bullet, gameObject);
     }
 }

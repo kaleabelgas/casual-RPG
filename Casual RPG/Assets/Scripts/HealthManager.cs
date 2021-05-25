@@ -33,10 +33,4 @@ public class HealthManager : MonoBehaviour, IDamageable
         healthDefault = _health;
         Health = healthDefault;
     }
-
-    private void OnDisable()
-    {
-
-        if (gameObject.tag.Equals("Enemy")) { GameManager.RemoveEnemyFromList(gameObject); }
-    }
 }
