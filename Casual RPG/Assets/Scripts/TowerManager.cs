@@ -7,6 +7,7 @@ public class TowerManager : MonoBehaviour, IDamageable
 {
     [SerializeField] private TowerSO[] towerUpgrades;
     [SerializeField] private WeaponHolder weaponHolder;
+    [SerializeField] private bool isMainTower;
 
 
     private int currentTowerLevel;
@@ -32,10 +33,16 @@ public class TowerManager : MonoBehaviour, IDamageable
         currentTowerLevel++;
         currentTower = towerUpgrades[currentTowerLevel];
         SetHealth(currentTower.Health);
-    }   
+    }
     public void Die()
     {
         OnTowerDeath?.Invoke();
+        if (isMainTower)
+        {
+            GameManager.Instance.LoseGame();
+        }
+        // TODO: CHANGE SPRITE IF POSSIBLE
+        gameObject.SetActive(false);
         //Debug.Log("TOWER DESTROYED");
     }
 
@@ -43,7 +50,7 @@ public class TowerManager : MonoBehaviour, IDamageable
     {
         if (!_hitter.tag.Equals("Enemy")) { return; }
         CurrentTowerHealth = Mathf.Max(0, CurrentTowerHealth - _damage);
-        if(CurrentTowerHealth <= 0) { Die(); }
+        if (CurrentTowerHealth <= 0) { Die(); }
         //Debug.Log(CurrentTowerHealth);
     }
 

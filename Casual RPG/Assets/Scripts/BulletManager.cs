@@ -51,29 +51,14 @@ public class BulletManager : MonoBehaviour
 
     private IEnumerator LookForEnemy()
     {
-        List<GameObject> _targetObjects = GameManager.Instance.GetAllObjectsAsList(GameManager.ObjectLists.enemy);
-        Transform _targetTransform = null;
-        float _distanceToTarget = bulletSO.SearchRadius;
-        float _distance;
         Vector2 _directionOfTarget = lastDirection;
+        Transform _target;
 
         while (true)
         {
-            _targetObjects = GameManager.Instance.GetAllObjectsAsList(GameManager.ObjectLists.enemy);
-            if (_targetObjects == null) { yield break; }
-
-            for (int i = 0; i < _targetObjects.Count; i++)
-            {
-                _distance = Vector2.Distance(_targetObjects[i].transform.position, transform.position);
-
-                if (_distance < _distanceToTarget)
-                {
-                    _distanceToTarget = _distance;
-                    _targetTransform = _targetObjects[i].transform;
-                    if (_targetTransform == null) { continue; }
-                    _directionOfTarget += (Vector2)(_targetTransform.position - transform.position) * bulletSO.Accuracy;
-                }
-            }
+            _target = GameManager.Instance.GetClosestObject(GameManager.ObjectLists.enemy, transform, bulletSO.SearchRadius);
+            if (_target == null) { yield break; }
+            _directionOfTarget += (Vector2)(_target.position - transform.position) * bulletSO.Accuracy;
 
             _directionOfTarget.Normalize();
             movement.SetMovement(_directionOfTarget);

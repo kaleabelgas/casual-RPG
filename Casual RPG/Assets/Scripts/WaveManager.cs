@@ -27,7 +27,11 @@ public class WaveManager : MonoBehaviour
         while (true)
         {
 
-            if (_currentWave + 1 > waves.Length) { yield break; }
+            if (_currentWave + 1 > waves.Length)
+            {
+                GameManager.Instance.StartWinGame();
+                yield break;
+            }
             _timeToNextWave = waves[_currentWave].TimeBeforeWave;
 
             yield return new WaitForSeconds(_timeToNextWave);

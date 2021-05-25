@@ -11,10 +11,6 @@ public class GameManager : MonoBehaviour
         enemy
     }
     public static GameManager Instance;
-
-    private List<GameObject> enemiesActive = new List<GameObject>();
-    private List<GameObject> bulletsActive = new List<GameObject>();
-
     private Dictionary<ObjectLists, List<GameObject>> listOfObjects;
 
 
@@ -75,5 +71,31 @@ public class GameManager : MonoBehaviour
             }
         }
         return _targetTransform;
+    }
+
+    public void StartWinGame()
+    {
+        Debug.Log("Game Won!");
+        StartCoroutine(CheckWinGame());
+    }
+
+    public void LoseGame()
+    {
+        Debug.Log("GAME LOST");
+        StopCoroutine(CheckWinGame());
+    }
+
+    private IEnumerator CheckWinGame()
+    {
+        while (true)
+        {
+            if (!CheckObjectsInList(ObjectLists.enemy))
+            {
+                Debug.Log("GAME WON");
+                Time.timeScale = 0;
+                yield break;
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
