@@ -40,7 +40,10 @@ public class ObjectPooler : MonoBehaviour
     public GameObject SpawnFromPool(string tag, Vector2 position, Quaternion rotation)
     {
         if (!poolDictionary.ContainsKey(tag))
+        {
+            Debug.LogError("NO SUCH POOL EXISTS!");
             return null;
+        }
 
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
 

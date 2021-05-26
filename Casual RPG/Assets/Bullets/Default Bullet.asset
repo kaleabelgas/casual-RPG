@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3fac599ede824d4fab07b3c3330adb7, type: 3}
   m_Name: Default Bullet
   m_EditorClassIdentifier: 
-  Tag: Bullet
+  Target: 1
   Damage: 10
-  Speed: 40
+  Speed: 20
   IsHoming: 0
-  Target: Enemy
   SearchDelay: 0.1
   SearchRadius: 50
-  Accuracy: 0.514
+  Accuracy: 0.061

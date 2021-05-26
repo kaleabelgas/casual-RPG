@@ -27,6 +27,7 @@ public class PlayerController : Entity
         playerHealthManager.SetHealth(thisEntity.Health);
         movement.SetMoveSpeed(thisEntity.MoveSpeed);
         playerHealthManager.OnPlayerDeath += TeleportToPad;
+        GameManager.Instance.AddObjectToList(GameManager.ObjectLists.player, gameObject);
     }
 
     private void TeleportToPad()

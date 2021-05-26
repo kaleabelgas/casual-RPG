@@ -25,7 +25,7 @@ public class TowerManager : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if (GameManager.Instance.CheckObjectsInList(GameManager.ObjectLists.enemy) && weaponHolder.IsHoldingWeapon()) { weaponHolder.UseWeapon(); }
+        if (GameManager.Instance.CheckObjectsInList(GameManager.ObjectLists.enemy) && weaponHolder.IsHoldingWeapon() && !isMainTower) { weaponHolder.UseWeapon(); }
     }
 
     public void UpgradeTower()

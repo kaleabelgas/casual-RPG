@@ -8,47 +8,60 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float timeBetweenEnemySpawn;
     [SerializeField] private TransformPoints wayPoints;
     private int _currentWave;
-    private float _timeToNextWave;
+    public float TimeToNextWave { get; private set; }
+
+    private bool _wavesOngoing;
 
     private void Start()
     {
-        StartCoroutine(StartWave());
+        TimeToNextWave = waves[_currentWave].TimeBeforeWave;
+        GameManager.Instance.AddObjectToList(GameManager.ObjectLists.waves, gameObject);
     }
 
     [ContextMenu("Restart Wave")]
     private void RestartWaves()
     {
-        StartCoroutine(StartWave());
+        _currentWave = 0;
+        StartWave();
     }
 
-    private IEnumerator StartWave()
+    private void Update()
     {
-        _currentWave = 0;
-        while (true)
+        TimeToNextWave -= Time.deltaTime;
+        if (_wavesOngoing) { StartWave(); }
+        
+    }
+
+    private void StartWave()
+    {
+        if(TimeToNextWave > 0) { return; }
+
+        StartCoroutine(SpawnWave());
+        _currentWave++;
+
+        if (_currentWave + 1 > waves.Length)
         {
-
-            if (_currentWave + 1 > waves.Length)
-            {
-                GameManager.Instance.StartWinGame();
-                yield break;
-            }
-            _timeToNextWave = waves[_currentWave].TimeBeforeWave;
-
-            yield return new WaitForSeconds(_timeToNextWave);
-
-
-            List<GameObject> enemies = waves[_currentWave].SpawnEnemies();
-            foreach (GameObject enemy in enemies)
-            {
-                enemy.transform.position = transform.position;
-                enemy.GetComponent<EnemyAI>().SetWayPoints(wayPoints);
-                enemy.SetActive(true);
-                GameManager.Instance.AddObjectToList(GameManager.ObjectLists.enemy, enemy);
-                yield return new WaitForSeconds(timeBetweenEnemySpawn);
-            }
-
-            _currentWave++;
+            GameManager.Instance.StartWinGame();
+            GameManager.Instance.RemoveObjectFromList(GameManager.ObjectLists.waves, gameObject);
+            _wavesOngoing = false;
+            return;
         }
 
+        TimeToNextWave = waves[_currentWave].TimeBeforeWave;
+    }
+
+    private IEnumerator SpawnWave()
+    {
+
+        List<GameObject> enemies = waves[_currentWave].SpawnEnemies();
+        if(enemies == null) { throw new System.Exception("ERROR: NO ENEMIES IN WAVE"); }
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.transform.position = transform.position;
+            enemy.GetComponent<EnemyAI>().SetWayPoints(wayPoints);
+            enemy.SetActive(true);
+            GameManager.Instance.AddObjectToList(GameManager.ObjectLists.enemy, enemy);
+            yield return new WaitForSeconds(timeBetweenEnemySpawn);
+        }
     }
 }

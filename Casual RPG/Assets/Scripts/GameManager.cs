@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     public enum ObjectLists
     {
         bullet,
-        enemy
+        enemy,
+        player,
+        waves
     }
     public static GameManager Instance;
     private Dictionary<ObjectLists, List<GameObject>> listOfObjects;
@@ -20,7 +22,7 @@ public class GameManager : MonoBehaviour
 
         listOfObjects = new Dictionary<ObjectLists, List<GameObject>>();
 
-        foreach (var objectList in (ObjectLists[]) Enum.GetValues(typeof(ObjectLists)))
+        foreach (var objectList in (ObjectLists[])Enum.GetValues(typeof(ObjectLists)))
         {
             List<GameObject> gameobjects = new List<GameObject>();
             listOfObjects.Add(objectList, gameobjects);
@@ -83,14 +85,14 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GAME LOST");
         StopCoroutine(CheckWinGame());
-        Time.timeScale = 0;
+        Time.timeScale = 0.1f;
     }
 
     private IEnumerator CheckWinGame()
     {
         while (true)
         {
-            if (!CheckObjectsInList(ObjectLists.enemy))
+            if (!CheckObjectsInList(ObjectLists.enemy) && !CheckObjectsInList(ObjectLists.waves))
             {
                 Debug.Log("GAME WON");
                 Time.timeScale = 0;

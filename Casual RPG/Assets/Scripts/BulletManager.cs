@@ -7,7 +7,7 @@ public class BulletManager : MonoBehaviour
     [SerializeField] private BulletSO bulletSO;
     [SerializeField] private IMovement movement;
 
-    private const float lifetimeconst = 2f;
+    private const float lifetimeconst = 4f;
     private float lifetime;
     private GameObject owner;
 
@@ -15,10 +15,6 @@ public class BulletManager : MonoBehaviour
     private void Awake()
     {
         movement = GetComponent<IMovement>();
-    }
-    private void Start()
-    {
-        gameObject.tag = bulletSO.Tag;
     }
     private void OnEnable()
     {
@@ -39,7 +35,7 @@ public class BulletManager : MonoBehaviour
         movement.SetMovement(_direction);
         lastDirection = _direction;
 
-        if (bulletSO.IsHoming && !owner.CompareTag("Enemy")) { StartCoroutine(LookForEnemy()); }
+        if (bulletSO.IsHoming) { StartCoroutine(LookForEnemy()); }
     }
 
     public void SetOwner(GameObject _owner)
@@ -53,10 +49,12 @@ public class BulletManager : MonoBehaviour
     {
         Vector2 _directionOfTarget = lastDirection;
         Transform _target;
+        GameManager.ObjectLists targetType = owner.CompareTag("Player") || owner.CompareTag("Tower") ? GameManager.ObjectLists.enemy : GameManager.ObjectLists.player;
+        Debug.Log($"Heading to {targetType}");
 
         while (true)
         {
-            _target = GameManager.Instance.GetClosestObject(GameManager.ObjectLists.enemy, gameObject.transform, bulletSO.SearchRadius);
+            _target = GameManager.Instance.GetClosestObject(targetType, gameObject.transform, bulletSO.SearchRadius);
             if (_target != null)
             {
                 _directionOfTarget += (Vector2)(_target.position - transform.position) * bulletSO.Accuracy;
@@ -64,7 +62,7 @@ public class BulletManager : MonoBehaviour
             }
             movement.SetMovement(_directionOfTarget);
             lastDirection = _directionOfTarget;
-            yield return null;
+            yield return new WaitForSeconds(Random.Range(0f, 0.1f));
         }
     }
 

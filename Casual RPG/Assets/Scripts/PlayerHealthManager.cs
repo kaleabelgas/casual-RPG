@@ -16,7 +16,7 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     private void Update()
     {
         _invinciClock -= Time.deltaTime;
-        Debug.Log($"Is Invincible for {(int)_invinciClock} seconds");
+        //Debug.Log($"Is Invincible for {(int)_invinciClock} seconds");
     }
     public void Die()
     {
