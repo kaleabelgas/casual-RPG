@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour, IPickupable, IWeapon
     private IWeapon weapon;
 
     private const int fiveSeconds = 5;
+    private const float overFive = .20f;
 
     private Color weaponColor;
 
@@ -29,10 +30,10 @@ public class Weapon : MonoBehaviour, IPickupable, IWeapon
         if (!isEquipped) { despawnClock -= Time.deltaTime; }
         if (despawnClock <= fiveSeconds)
         {
-            weaponColor.a = Mathf.Max(0, weaponColor.a - Time.deltaTime);
+            weaponColor.a = Mathf.Max(0, weaponColor.a - (Time.deltaTime * overFive));
             weaponRenderer.color = weaponColor;
         }
-        if (despawnClock <= 0) { Destroy(gameObject, .01f); }
+        if (despawnClock <= 0) { Destroy(gameObject); }
     }
 
     public void Attack()
@@ -52,7 +53,7 @@ public class Weapon : MonoBehaviour, IPickupable, IWeapon
 
         weaponColor = weaponRenderer.color;
 
-        weaponColor.a = 255;
+        weaponColor.a = 1;
         weaponRenderer.color = weaponColor;
     }
 

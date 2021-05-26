@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,21 +8,24 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private Wave[] waves;
     [SerializeField] private float timeBetweenEnemySpawn;
     [SerializeField] private TransformPoints wayPoints;
-    private int _currentWave;
+
+    public event Action OnWaveIterate;
+
+    public int CurrentWave { get; private set; }
     public float TimeToNextWave { get; private set; }
 
     private bool _wavesOngoing = true;
 
     private void Start()
     {
-        TimeToNextWave = waves[_currentWave].TimeBeforeWave;
+        TimeToNextWave = waves[CurrentWave].TimeBeforeWave;
         GameManager.Instance.AddObjectToList(GameManager.ObjectLists.waves, gameObject);
     }
 
     [ContextMenu("Restart Wave")]
     private void RestartWaves()
     {
-        _currentWave = 0;
+        CurrentWave = 0;
         StartWave();
     }
 
@@ -33,7 +37,7 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
-        TimeToNextWave -= Time.deltaTime;
+        TimeToNextWave = Mathf.Max(0, TimeToNextWave - Time.deltaTime);
         if (_wavesOngoing) { StartWave(); }
         if (Input.GetKeyDown(KeyCode.K)) { SkipWave(); }
         
@@ -46,7 +50,7 @@ public class WaveManager : MonoBehaviour
         Debug.Log("Spawning");
         StartCoroutine(SpawnWave());
 
-        if (_currentWave + 1 > waves.Length)
+        if (CurrentWave + 1 > waves.Length)
         {
             Debug.Log("End reached, spawning stopped");
             GameManager.Instance.StartWinGame();
@@ -55,18 +59,19 @@ public class WaveManager : MonoBehaviour
             return;
         }
 
-        TimeToNextWave = waves[_currentWave].TimeBeforeWave;
+        TimeToNextWave = waves[CurrentWave].TimeBeforeWave;
     }
 
     private IEnumerator SpawnWave()
     {
-        if(_currentWave + 1 > waves.Length) { yield break; }
+        if(CurrentWave + 1 > waves.Length) { yield break; }
 
-        List<GameObject> enemies = waves[_currentWave].SpawnEnemies();
+        List<GameObject> enemies = waves[CurrentWave].SpawnEnemies();
         if(enemies == null) { throw new System.Exception("ERROR: NO ENEMIES IN WAVE"); }
 
-        _currentWave++;
-        Debug.Log("Iterate wave to " + _currentWave);
+        CurrentWave++;
+        OnWaveIterate?.Invoke();
+        Debug.Log("Iterate wave to " + CurrentWave);
 
         foreach (GameObject enemy in enemies)
         {
