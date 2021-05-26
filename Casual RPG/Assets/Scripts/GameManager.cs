@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     private bool isCheckingWin;
 
+    [SerializeField] private int levelNumber;
+
 
     private void Awake()
     {
@@ -98,6 +100,8 @@ public class GameManager : MonoBehaviour
             if (!CheckObjectsInList(ObjectLists.enemy) && !CheckObjectsInList(ObjectLists.waves))
             {
                 Debug.Log("GAME WON");
+                int lastlevelReached = PlayerPrefs.GetInt("LASTLEVELREACHED", 1);
+                PlayerPrefs.SetInt("LEVELREACHED", levelNumber > lastlevelReached ? levelNumber : lastlevelReached);
                 Time.timeScale = 0;
                 yield break;
             }

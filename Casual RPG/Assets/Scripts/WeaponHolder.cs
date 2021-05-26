@@ -17,12 +17,13 @@ public class WeaponHolder : MonoBehaviour
     private void Update()
     {
         if (shouldFaceEnemy) { FaceEnemy(); }
+
+        if (transform.childCount == 0) { currentWeapon = null; }
     }
     public void UseWeapon()
     {
         if (currentWeapon == null)
         {
-            Debug.LogWarning("Current Weapon is Null", this);
             return;
         }
         currentWeapon.Attack();
@@ -47,6 +48,7 @@ public class WeaponHolder : MonoBehaviour
             WeaponHolder weaponHolderTower = tower.gameObject.GetComponentInChildren<WeaponHolder>();
 
             if(!weaponHolderTower.CanEquip) { continue; }
+            if (weaponHolderTower.IsHoldingWeapon()) { continue; }
 
             weaponHolderTower.ReceiveWeapon(currentWeapon);
             currentWeapon = null;
@@ -57,6 +59,7 @@ public class WeaponHolder : MonoBehaviour
     {
         if (_weapon == null) { return; }
         if (currentWeapon != null) { DropCurrentWeapon(); }
+
         _weapon.PickUp(transform);
 
         currentWeapon = _weapon;
