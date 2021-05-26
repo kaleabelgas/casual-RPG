@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tag: Gun
   BulletUsed: Homing Bullet 1
-  AttackSpeed: 0.09
-  AttackPoints: 2
+  AttackSpeed: 0.01
+  AttackPoints: 34
   Arc: 360
   Radius: 2
   ChanceToDrop: 2

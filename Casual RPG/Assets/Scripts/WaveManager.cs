@@ -10,7 +10,7 @@ public class WaveManager : MonoBehaviour
     private int _currentWave;
     public float TimeToNextWave { get; private set; }
 
-    private bool _wavesOngoing;
+    private bool _wavesOngoing = true;
 
     private void Start()
     {
@@ -25,10 +25,17 @@ public class WaveManager : MonoBehaviour
         StartWave();
     }
 
+    [ContextMenu("SKIP WAVE")]
+    public void SkipWave()
+    {
+        TimeToNextWave = 0;
+    }
+
     private void Update()
     {
         TimeToNextWave -= Time.deltaTime;
         if (_wavesOngoing) { StartWave(); }
+        if (Input.GetKeyDown(KeyCode.K)) { SkipWave(); }
         
     }
 
@@ -36,11 +43,12 @@ public class WaveManager : MonoBehaviour
     {
         if(TimeToNextWave > 0) { return; }
 
+        Debug.Log("Spawning");
         StartCoroutine(SpawnWave());
-        _currentWave++;
 
         if (_currentWave + 1 > waves.Length)
         {
+            Debug.Log("End reached, spawning stopped");
             GameManager.Instance.StartWinGame();
             GameManager.Instance.RemoveObjectFromList(GameManager.ObjectLists.waves, gameObject);
             _wavesOngoing = false;
@@ -52,9 +60,14 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator SpawnWave()
     {
+        if(_currentWave + 1 > waves.Length) { yield break; }
 
         List<GameObject> enemies = waves[_currentWave].SpawnEnemies();
         if(enemies == null) { throw new System.Exception("ERROR: NO ENEMIES IN WAVE"); }
+
+        _currentWave++;
+        Debug.Log("Iterate wave to " + _currentWave);
+
         foreach (GameObject enemy in enemies)
         {
             enemy.transform.position = transform.position;
@@ -63,5 +76,6 @@ public class WaveManager : MonoBehaviour
             GameManager.Instance.AddObjectToList(GameManager.ObjectLists.enemy, enemy);
             yield return new WaitForSeconds(timeBetweenEnemySpawn);
         }
+
     }
 }

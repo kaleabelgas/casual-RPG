@@ -16,4 +16,4 @@ MonoBehaviour:
   - Prefab: Default Enemy
     min: 10
     max: 10
-  TimeBeforeWave: 1
+  TimeBeforeWave: 10

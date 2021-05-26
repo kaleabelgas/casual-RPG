@@ -13,7 +13,6 @@ public class Weapon : MonoBehaviour, IPickupable, IWeapon
     private IWeapon weapon;
 
     private const int fiveSeconds = 5;
-    private const int fiftyone = 51;
 
     private Color weaponColor;
 
@@ -50,6 +49,11 @@ public class Weapon : MonoBehaviour, IPickupable, IWeapon
         transform.rotation = _parent.rotation;
         isEquipped = true;
         despawnClock = despawnTime;
+
+        weaponColor = weaponRenderer.color;
+
+        weaponColor.a = 255;
+        weaponRenderer.color = weaponColor;
     }
 
 

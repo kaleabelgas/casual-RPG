@@ -9,12 +9,10 @@ public class WeaponHolder : MonoBehaviour
 
     [SerializeField] private float enemySearchDelay;
     [SerializeField] bool shouldFaceEnemy;
-    [SerializeField] private bool isAcceptingWeapon = true;
+
+    public bool CanEquip { get; set; }
     private GameObject _target;
     private float _enemySearchDelay;
-
-
-
 
     private void Update()
     {
@@ -38,6 +36,8 @@ public class WeaponHolder : MonoBehaviour
 
     public void GiveWeaponToTower()
     {
+        if(currentWeapon == null) { return; }
+
         Collider2D[] towers = Physics2D.OverlapCircleAll(transform.position, 2);
 
         foreach (Collider2D tower in towers)
@@ -45,14 +45,17 @@ public class WeaponHolder : MonoBehaviour
             if (!tower.gameObject.CompareTag("Tower")) { continue; }
 
             WeaponHolder weaponHolderTower = tower.gameObject.GetComponentInChildren<WeaponHolder>();
+
+            if(!weaponHolderTower.CanEquip) { continue; }
+
             weaponHolderTower.ReceiveWeapon(currentWeapon);
+            currentWeapon = null;
             break;
         }
     }
     public void ReceiveWeapon(Weapon _weapon)
     {
         if (_weapon == null) { return; }
-        if (!isAcceptingWeapon) { return; }
         if (currentWeapon != null) { DropCurrentWeapon(); }
         _weapon.PickUp(transform);
 
@@ -115,6 +118,7 @@ public class WeaponHolder : MonoBehaviour
             Weapon _weaponOnGround = _weapon.gameObject.GetComponent<Weapon>();
 
             if (_weaponOnGround == null) { continue; }
+
             if (currentWeapon != null && _weaponOnGround.gameObject.Equals(currentWeapon.gameObject)) { continue; }
 
             if (currentWeapon != null) { DropCurrentWeapon(); }

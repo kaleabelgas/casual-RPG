@@ -21,6 +21,7 @@ public class TowerManager : MonoBehaviour, IDamageable
     {
         currentTower = towerUpgrades[currentTowerLevel];
         SetHealth(currentTower.Health);
+        weaponHolder.CanEquip = !isMainTower;
     }
 
     private void Update()

@@ -50,7 +50,7 @@ public class BulletManager : MonoBehaviour
         Vector2 _directionOfTarget = lastDirection;
         Transform _target;
         GameManager.ObjectLists targetType = owner.CompareTag("Player") || owner.CompareTag("Tower") ? GameManager.ObjectLists.enemy : GameManager.ObjectLists.player;
-        Debug.Log($"Heading to {targetType}");
+        //Debug.Log($"Heading to {targetType}");
 
         while (true)
         {

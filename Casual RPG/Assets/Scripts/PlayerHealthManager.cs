@@ -41,7 +41,7 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
 
         if (_invinciClock > 0) { return; }
 
-        Debug.Log("Ouch! " + CurrentPlayerHealth);
+        //Debug.Log("Ouch! " + CurrentPlayerHealth);
 
         CurrentPlayerHealth = Mathf.Max(0, CurrentPlayerHealth - _damage);
 

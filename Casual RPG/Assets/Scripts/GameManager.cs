@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private Dictionary<ObjectLists, List<GameObject>> listOfObjects;
 
+    private bool isCheckingWin;
+
 
     private void Awake()
     {
@@ -77,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     public void StartWinGame()
     {
-        Debug.Log("Game Won!");
+        if (isCheckingWin) { return; }
         StartCoroutine(CheckWinGame());
     }
 
@@ -90,6 +92,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CheckWinGame()
     {
+        isCheckingWin = true;
         while (true)
         {
             if (!CheckObjectsInList(ObjectLists.enemy) && !CheckObjectsInList(ObjectLists.waves))

@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3fac599ede824d4fab07b3c3330adb7, type: 3}
   m_Name: Homing Bullet 1
   m_EditorClassIdentifier: 
-  Target: 1
-  Damage: 30
+  Damage: 20
   Speed: 10
   IsHoming: 1
-  SearchDelay: 0
   SearchRadius: 19.51
   Accuracy: 0.05
