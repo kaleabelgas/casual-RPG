@@ -14,7 +14,7 @@ public class UILevelSelect : MonoBehaviour
 
         for (int i = 0; i < levelButtons.Length; i++)
         {
-            if(i + 1 > levelReached)
+            if(i > 0)
             {
                 levelButtons[i].interactable = false;
             }

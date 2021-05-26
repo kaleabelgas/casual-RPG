@@ -21,6 +21,8 @@ public class BulletManager : MonoBehaviour
         movement.SetMoveSpeed(bulletSO.Speed);
         GameManager.Instance.AddObjectToList(GameManager.ObjectLists.bullet, gameObject);
         lifetime = lifetimeconst;
+
+
     }
 
     private void Update()
@@ -34,6 +36,12 @@ public class BulletManager : MonoBehaviour
     {
         movement.SetMovement(_direction);
         lastDirection = _direction;
+
+        float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg - 90;
+
+        Debug.Log(angle);
+
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, angle);
 
         if (bulletSO.IsHoming) { StartCoroutine(LookForEnemy()); }
     }
@@ -64,7 +72,10 @@ public class BulletManager : MonoBehaviour
                     _directionOfTarget.Normalize();
                 }
                 movement.SetMovement(_directionOfTarget);
-                lastDirection = _directionOfTarget;
+
+                lastDirection = _directionOfTarget; float angle = Mathf.Atan2(_directionOfTarget.y, _directionOfTarget.x) * Mathf.Rad2Deg - 90;
+
+                transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, angle);
                 yield return new WaitForSeconds(Random.Range(0f, 0.1f));
             }
             yield return null;

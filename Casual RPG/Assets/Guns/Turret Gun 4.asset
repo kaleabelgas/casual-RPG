@@ -15,7 +15,7 @@ MonoBehaviour:
   Tag: Gun
   BulletUsed: Homing Bullet 1
   AttackSpeed: 0.2
-  AttackPoints: 30
+  AttackPoints: 40
   Arc: 360
   Radius: 2
   ChanceToDrop: 20

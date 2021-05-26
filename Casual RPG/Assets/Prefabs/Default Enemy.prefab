@@ -77,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: -1820804725
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b539891c0bc4f3f4c90a8e6a5300f172, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3481fdba0721e914190429e1ca833880, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -126,12 +126,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2748254
 --- !u!50 &-2829325726120105358
 Rigidbody2D:
   serializedVersion: 4
@@ -173,6 +173,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1781837380728080344}
     m_Modifications:
+    - target: {fileID: 1287838610245225096, guid: 2713f14008fc6b445a92d8dba44a8c63, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.147
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287838610245225096, guid: 2713f14008fc6b445a92d8dba44a8c63, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.165
+      objectReference: {fileID: 0}
     - target: {fileID: 5322832409806736768, guid: 2713f14008fc6b445a92d8dba44a8c63, type: 3}
       propertyPath: m_Name
       value: Weapon Holder

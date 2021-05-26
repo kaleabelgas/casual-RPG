@@ -25,7 +25,7 @@ public class MoveTransform : MonoBehaviour, IMovement
 
     private void Move()
     {
-        transform.Translate(movementDirection * moveSpeed * Time.deltaTime);
+        transform.Translate(movementDirection * moveSpeed * Time.deltaTime, Space.World);
     }
 
     private void Update()
