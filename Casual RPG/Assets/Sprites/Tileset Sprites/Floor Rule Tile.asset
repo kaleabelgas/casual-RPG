@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
+  m_Name: Floor Rule Tile
+  m_EditorClassIdentifier: 
+  m_DefaultSprite: {fileID: 0}
+  m_DefaultGameObject: {fileID: 0}
+  m_DefaultColliderType: 1
+  m_TilingRules:
+  - m_Id: 0
+    m_Sprites:
+    - {fileID: 21300000, guid: 4eedee6868bc9224f884334962322e1f, type: 3}
+    - {fileID: 21300000, guid: 7bf435e4309c3674fa1c089346a7c428, type: 3}
+    - {fileID: 21300000, guid: 2c2e2778a83cc464d9d0dde669720e61, type: 3}
+    - {fileID: 21300000, guid: d74471af658947647aaeb87a75433077, type: 3}
+    - {fileID: 21300000, guid: ef0fcabc105700d4f877abc6d2b1b8a8, type: 3}
+    - {fileID: 21300000, guid: 5c3ab636ebfdee44c9ff6eb6b1b4e76d, type: 3}
+    - {fileID: 21300000, guid: 34cef1f850f7ab14f98667ade5860636, type: 3}
+    - {fileID: 21300000, guid: 920c78e63687eb14cadea424af4a8502, type: 3}
+    - {fileID: 21300000, guid: 6aaf5492294871743a6ff1f5fb913fc5, type: 3}
+    - {fileID: 21300000, guid: 09b57db71845e504ab85a8e19a55f04d, type: 3}
+    - {fileID: 21300000, guid: 4770cf9cb66fdea4491104bb88a24f2e, type: 3}
+    - {fileID: 21300000, guid: 052231163927ad740921adc870cecdcc, type: 3}
+    - {fileID: 21300000, guid: 8ff49c6b3b148324689d0a7c314f3d2b, type: 3}
+    m_GameObject: {fileID: 0}
+    m_MinAnimationSpeed: 1
+    m_MaxAnimationSpeed: 1
+    m_PerlinScale: 0.1
+    m_Output: 1
+    m_ColliderType: 1
+    m_RandomTransform: 0
+    m_Neighbors: 
+    m_NeighborPositions:
+    - {x: -1, y: 1, z: 0}
+    - {x: 0, y: 1, z: 0}
+    - {x: 1, y: 1, z: 0}
+    - {x: -1, y: 0, z: 0}
+    - {x: 1, y: 0, z: 0}
+    - {x: -1, y: -1, z: 0}
+    - {x: 0, y: -1, z: 0}
+    - {x: 1, y: -1, z: 0}
+    m_RuleTransform: 0

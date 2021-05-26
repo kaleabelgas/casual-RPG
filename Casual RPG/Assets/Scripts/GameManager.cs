@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private bool isCheckingWin;
 
     [SerializeField] private int levelNumber;
+    [SerializeField] private UIGameScene UIGameScene;
 
 
     private void Awake()
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
             List<GameObject> gameobjects = new List<GameObject>();
             listOfObjects.Add(objectList, gameobjects);
         }
+
+        Time.timeScale = 1;
     }
 
 
@@ -88,6 +91,7 @@ public class GameManager : MonoBehaviour
     public void LoseGame()
     {
         Debug.Log("GAME LOST");
+        UIGameScene.EnableGameOverScreen();
         StopCoroutine(CheckWinGame());
         Time.timeScale = 0.1f;
     }
@@ -100,6 +104,7 @@ public class GameManager : MonoBehaviour
             if (!CheckObjectsInList(ObjectLists.enemy) && !CheckObjectsInList(ObjectLists.waves))
             {
                 Debug.Log("GAME WON");
+                UIGameScene.EnableWinGameScreen();
                 int lastlevelReached = PlayerPrefs.GetInt("LASTLEVELREACHED", 1);
                 PlayerPrefs.SetInt("LEVELREACHED", levelNumber > lastlevelReached ? levelNumber : lastlevelReached);
                 Time.timeScale = 0;

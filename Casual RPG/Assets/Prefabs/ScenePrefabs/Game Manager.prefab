@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c950b68a546d4346bbd18e508f54447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNumber: 1
+  UIGameScene: {fileID: 0}

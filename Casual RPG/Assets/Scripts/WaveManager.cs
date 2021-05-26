@@ -67,7 +67,7 @@ public class WaveManager : MonoBehaviour
         if(CurrentWave + 1 > waves.Length) { yield break; }
 
         List<GameObject> enemies = waves[CurrentWave].SpawnEnemies();
-        if(enemies == null) { throw new System.Exception("ERROR: NO ENEMIES IN WAVE"); }
+        if(enemies == null) { throw new Exception("ERROR: NO ENEMIES IN WAVE"); }
 
         CurrentWave++;
         OnWaveIterate?.Invoke();

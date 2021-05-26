@@ -54,15 +54,20 @@ public class BulletManager : MonoBehaviour
 
         while (true)
         {
-            _target = GameManager.Instance.GetClosestObject(targetType, gameObject.transform, bulletSO.SearchRadius);
-            if (_target != null)
+            if (GameManager.Instance.CheckObjectsInList(targetType))
             {
-                _directionOfTarget += (Vector2)(_target.position - transform.position) * bulletSO.Accuracy;
-                _directionOfTarget.Normalize();
+
+                _target = GameManager.Instance.GetClosestObject(targetType, gameObject.transform, bulletSO.SearchRadius);
+                if (_target != null)
+                {
+                    _directionOfTarget += (Vector2)(_target.position - transform.position) * bulletSO.Accuracy;
+                    _directionOfTarget.Normalize();
+                }
+                movement.SetMovement(_directionOfTarget);
+                lastDirection = _directionOfTarget;
+                yield return new WaitForSeconds(Random.Range(0f, 0.1f));
             }
-            movement.SetMovement(_directionOfTarget);
-            lastDirection = _directionOfTarget;
-            yield return new WaitForSeconds(Random.Range(0f, 0.1f));
+            yield return null;
         }
     }
 

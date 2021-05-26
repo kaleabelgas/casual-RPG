@@ -15,5 +15,5 @@ MonoBehaviour:
   Damage: 20
   Speed: 10
   IsHoming: 1
-  SearchRadius: 19.51
-  Accuracy: 1
+  SearchRadius: 5
+  Accuracy: 0.148
