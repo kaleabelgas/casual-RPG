@@ -1368,7 +1368,7 @@ RectTransform:
   - {fileID: 174053148}
   - {fileID: 823143981}
   m_Father: {fileID: 2651548762710687611}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1714,7 +1714,7 @@ RectTransform:
   - {fileID: 1530660393}
   - {fileID: 454750008}
   m_Father: {fileID: 2651548762710687611}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2192,7 +2192,7 @@ RectTransform:
   - {fileID: 1145749222}
   - {fileID: 859103783}
   m_Father: {fileID: 2651548762710687611}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2404,7 +2404,7 @@ RectTransform:
   - {fileID: 1644278215}
   - {fileID: 912801816}
   m_Father: {fileID: 2651548762710687611}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2728,12 +2728,12 @@ GameObject:
   - component: {fileID: 1859948305}
   - component: {fileID: 1859948304}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Respawn Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1859948303
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2741,13 +2741,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859948302}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 488656179}
   m_Father: {fileID: 2651548762710687611}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3094,11 +3094,11 @@ RectTransform:
   - {fileID: 2651548763984797734}
   - {fileID: 2651548762696799002}
   - {fileID: 2651548763173994362}
+  - {fileID: 1859948303}
   - {fileID: 1629468004}
   - {fileID: 989644977}
   - {fileID: 1427240610}
   - {fileID: 1609218035}
-  - {fileID: 1859948303}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

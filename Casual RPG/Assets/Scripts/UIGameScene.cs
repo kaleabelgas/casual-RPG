@@ -97,7 +97,7 @@ public class UIGameScene : MonoBehaviour
 
     public void EnableGameOverScreen()
     {
-        gameOverMenu.SetActive(false);
+        gameOverMenu.SetActive(true);
     }
 
     public void EnableWinGameScreen()
