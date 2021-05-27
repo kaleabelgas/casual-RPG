@@ -71,7 +71,7 @@ public class UIGameScene : MonoBehaviour
 
     public void GoToNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(LoadAsync(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     public void GoToMainMenu()
@@ -118,6 +118,16 @@ public class UIGameScene : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(LoadAsync(SceneManager.GetActiveScene().buildIndex));
+    }
+
+    private IEnumerator LoadAsync(int _index)
+    {
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_index);
+
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
+        }
     }
 }

@@ -8,6 +8,8 @@ public class UILevelSelect : MonoBehaviour
 {
     [SerializeField] private Button[] levelButtons;
 
+    private bool _hasSelected;
+
     private void Start()
     {
         int levelReached = PlayerPrefs.GetInt("HIGHESTLEVELREACHED", 1);
@@ -23,7 +25,19 @@ public class UILevelSelect : MonoBehaviour
 
     public void OpenLevel(int _level)
     {
-        SceneManager.LoadScene(_level);
+        StartCoroutine(LoadAsync(_level));
+    }
+
+    private IEnumerator LoadAsync(int _level)
+    {
+        if (_hasSelected) { yield break; }
+        _hasSelected = true;
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_level);
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
+
+        }
     }
 
     public void GoToMainMenu()

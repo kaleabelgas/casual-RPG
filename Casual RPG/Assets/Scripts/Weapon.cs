@@ -47,7 +47,7 @@ public class Weapon : MonoBehaviour, IPickupable, IWeapon
     {
         transform.SetParent(_parent);
         transform.position = _parent.position;
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
+        transform.rotation = _parent.rotation;
         isEquipped = true;
         despawnClock = despawnTime;
 
