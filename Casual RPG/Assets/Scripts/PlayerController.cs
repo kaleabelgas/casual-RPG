@@ -7,6 +7,8 @@ public class PlayerController : Entity
     private IMovement movement;
     [SerializeField] private WeaponHolder weaponHolder;
 
+    [SerializeField] private GameObject weaponToUse;
+
     [SerializeField] private PlayerHealthManager playerHealthManager;
 
     [SerializeField] private Transform padLocation;
@@ -21,6 +23,7 @@ public class PlayerController : Entity
     protected override void Awake()
     {
         movement = GetComponent<IMovement>();
+        padLocation = GameObject.FindGameObjectWithTag("Main Tower").transform;
     }
     protected override void Start()
     {
@@ -28,6 +31,10 @@ public class PlayerController : Entity
         movement.SetMoveSpeed(thisEntity.MoveSpeed);
         playerHealthManager.OnPlayerDeath += TeleportToPad;
         GameManager.Instance.AddObjectToList(GameManager.ObjectLists.player, gameObject);
+
+
+        GameObject _weapon = Instantiate(weaponToUse, weaponHolder.transform, true);
+        weaponHolder.ReceiveWeapon(_weapon.GetComponent<Weapon>());
     }
 
     private void TeleportToPad()

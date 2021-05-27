@@ -30,6 +30,7 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     {
         SetHealth(healthDefault);
         Debug.Log($"Resetting Health to {CurrentPlayerHealth}");
+        healthBar.SetBarSize(1);
         _invinciClock = invincibleTime;
         isDead = false;
     }

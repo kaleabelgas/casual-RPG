@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("GAME WON");
                 UIGameScene.EnableWinGameScreen();
                 int lastlevelReached = PlayerPrefs.GetInt("LASTLEVELREACHED", 1);
-                PlayerPrefs.SetInt("LEVELREACHED", levelNumber > lastlevelReached ? levelNumber : lastlevelReached);
+                PlayerPrefs.SetInt("LASTLEVELREACHED", levelNumber > lastlevelReached ? levelNumber : lastlevelReached);
                 Time.timeScale = 0;
                 yield break;
             }

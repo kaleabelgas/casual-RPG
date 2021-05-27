@@ -15,6 +15,6 @@ MonoBehaviour:
   Mask:
     serializedVersion: 2
     m_Bits: 55
-  Damage: 10
-  AttackSpeed: 0.2
+  Damage: 50
+  AttackSpeed: 0.05
   AttackRadius: 1

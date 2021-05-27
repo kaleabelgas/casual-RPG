@@ -66,6 +66,7 @@ public class Weapon : MonoBehaviour, IPickupable, IWeapon
         isEquipped = false;
 
         if (owner.CompareTag("Player")) { return; }
+        if(gunSO == null) { return; }
 
         float randomNumber = Random.Range(0, 100);
         if (randomNumber > gunSO.ChanceToDrop) { Destroy(gameObject); }

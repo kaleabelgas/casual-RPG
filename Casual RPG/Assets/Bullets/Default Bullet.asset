@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3fac599ede824d4fab07b3c3330adb7, type: 3}
   m_Name: Default Bullet
   m_EditorClassIdentifier: 
-  Target: 1
   Damage: 10
-  Speed: 20
+  Speed: 25
   IsHoming: 0
-  SearchDelay: 0.1
   SearchRadius: 50
   Accuracy: 0.061

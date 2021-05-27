@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd70da300a354a046809bfb410affa87, type: 3}
   m_Name: Level 1 Tower
   m_EditorClassIdentifier: 
-  Health: 40
+  Health: 200
   Weapon: {fileID: 7167207226684864068, guid: a46e10f956761fa40874c0a09aa4cf02, type: 3}

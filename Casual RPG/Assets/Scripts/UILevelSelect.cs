@@ -12,11 +12,11 @@ public class UILevelSelect : MonoBehaviour
 
     private void Start()
     {
-        int levelReached = PlayerPrefs.GetInt("HIGHESTLEVELREACHED", 1);
+        int levelReached = PlayerPrefs.GetInt("LASTLEVELREACHED", 1);
 
         for (int i = 0; i < levelButtons.Length; i++)
         {
-            if(i > 0)
+            if(i + 1> levelReached)
             {
                 levelButtons[i].interactable = false;
             }

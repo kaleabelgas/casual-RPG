@@ -114,7 +114,7 @@ public class WeaponHolder : MonoBehaviour
 
     public void Equip()
     {
-        Collider2D[] _weapons = Physics2D.OverlapCircleAll(transform.position, 2f);
+        Collider2D[] _weapons = Physics2D.OverlapCircleAll(transform.position, 1f);
 
         foreach (Collider2D _weapon in _weapons)
         {

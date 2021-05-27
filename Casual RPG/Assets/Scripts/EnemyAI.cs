@@ -26,7 +26,7 @@ public class EnemyAI : Entity
     {
         movement.SetMoveSpeed(thisEntity.MoveSpeed);
         if (weaponHolder.IsHoldingWeapon()) { return; }
-        GameObject _weapon = Instantiate(weaponToUse, weaponHolder.transform);
+        GameObject _weapon = Instantiate(weaponToUse, weaponHolder.transform, true);
         weaponHolder.ReceiveWeapon(_weapon.GetComponent<Weapon>());
     }
     private void Update()

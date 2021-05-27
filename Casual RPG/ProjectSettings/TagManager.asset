@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Gun
   - Tower
+  - Main Tower
   layers:
   - Default
   - TransparentFX

@@ -84,6 +84,8 @@ public class BulletManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.CompareTag("Bullet")) { return; }
+        if (other.gameObject.CompareTag("Gun")) { return; }
         if (other.gameObject.CompareTag(owner.tag))
         {
             return;
@@ -92,6 +94,7 @@ public class BulletManager : MonoBehaviour
         IDamageable toDamage = other.gameObject.GetComponent<IDamageable>();
         if (toDamage == null)
         {
+            //Debug.Log(other.gameObject.tag, other.gameObject);
             gameObject.SetActive(false);
             return;
         }
@@ -99,6 +102,7 @@ public class BulletManager : MonoBehaviour
         //Debug.Log($"Hitting {other.gameObject.name} with bullet from {owner.name}");
         toDamage.GetDamaged(bulletSO.Damage, this.gameObject, owner);
         //Debug.Log(other.gameObject.name);
+        Debug.Log(other.gameObject.tag);
         gameObject.SetActive(false);
 
     }
