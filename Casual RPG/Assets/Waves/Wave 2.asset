@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - Prefab: Default Enemy
-    min: 10
-    max: 10
+    min: 2
+    max: 5
   TimeBeforeWave: 10

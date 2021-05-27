@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerHealthManager : MonoBehaviour, IDamageable
 {
     [SerializeField] private float invincibleTime;
+    [SerializeField] private HealthBar healthBar;
     public event Action OnPlayerDeath;
     public int CurrentPlayerHealth { get; private set; }
     private int healthDefault;
@@ -44,6 +45,7 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
         //Debug.Log("Ouch! " + CurrentPlayerHealth);
 
         CurrentPlayerHealth = Mathf.Max(0, CurrentPlayerHealth - _damage);
+        healthBar.SetBarSize(CurrentPlayerHealth / (float)healthDefault);
 
         if (CurrentPlayerHealth <= 0) { Die(); }
     }

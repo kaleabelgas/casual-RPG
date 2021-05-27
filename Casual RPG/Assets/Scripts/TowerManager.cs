@@ -8,6 +8,7 @@ public class TowerManager : MonoBehaviour, IDamageable
     [SerializeField] private TowerSO[] towerUpgrades;
     [SerializeField] private WeaponHolder weaponHolder;
     [SerializeField] private bool isMainTower;
+    [SerializeField] private HealthBar healthBar;
 
 
     private int currentTowerLevel;
@@ -51,6 +52,8 @@ public class TowerManager : MonoBehaviour, IDamageable
     {
         if (!_hitter.tag.Equals("Enemy")) { return; }
         CurrentTowerHealth = Mathf.Max(0, CurrentTowerHealth - _damage);
+        healthBar.SetBarSize(CurrentTowerHealth / (float)currentTower.Health);
+        CameraShake.Instance.ShakeCamera(1f, 0.5f);
         if (CurrentTowerHealth <= 0) { Die(); }
         //Debug.Log(CurrentTowerHealth);
     }

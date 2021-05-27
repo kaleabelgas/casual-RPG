@@ -39,7 +39,7 @@ public class BulletManager : MonoBehaviour
 
         float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg - 90;
 
-        Debug.Log(angle);
+        //Debug.Log(angle);
 
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, angle);
 

@@ -35,6 +35,7 @@ public class EnemyAI : Entity
 
         if (!hasReachedEnd) { LookForWaypoints(); }
 
+
     }
 
     public void SetWayPoints(TransformPoints transformPoints)
@@ -76,7 +77,7 @@ public class EnemyAI : Entity
         IDamageable toDamage = other.gameObject.GetComponent<IDamageable>();
         if (toDamage == null) { return; }
 
-        toDamage.GetDamaged(15, this.gameObject, this.gameObject);
+        toDamage.GetDamaged(20, this.gameObject, this.gameObject);
         gameObject.SetActive(false);
     }
 

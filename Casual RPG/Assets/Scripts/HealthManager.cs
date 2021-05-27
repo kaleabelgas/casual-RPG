@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour, IDamageable
 {
-    public int Health { get; private set; }
+    public int CurrentHealth { get; private set; }
 
+    [SerializeField] private HealthBar healthBar;
     public event Action OnEntityDeath;
     private int healthDefault;
     public void Die()
@@ -18,19 +19,21 @@ public class HealthManager : MonoBehaviour, IDamageable
     public virtual void GetDamaged(int _damage, GameObject _hitter, GameObject _owner)
     {
 
-        Health = Mathf.Max(0, Health - _damage);
+        CurrentHealth = Mathf.Max(0, CurrentHealth - _damage);
 
-        if (Health <= 0) { Die(); }
+        healthBar.SetBarSize(CurrentHealth / (float)healthDefault);
+
+        if (CurrentHealth <= 0) { Die(); }
     }
 
     public void GetHealed(int _heal)
     {
-        Health = Mathf.Min(healthDefault, Health + _heal);
+        CurrentHealth = Mathf.Min(healthDefault, CurrentHealth + _heal);
     }
 
     public void SetHealth(int _health = 0)
     {
         healthDefault = _health;
-        Health = healthDefault;
+        CurrentHealth = healthDefault;
     }
 }

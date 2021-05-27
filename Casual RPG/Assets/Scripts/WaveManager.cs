@@ -16,6 +16,8 @@ public class WaveManager : MonoBehaviour
 
     private bool _wavesOngoing = true;
 
+    private bool _spawnEnabled;
+
     private void Start()
     {
         TimeToNextWave = waves[CurrentWave].TimeBeforeWave;
@@ -35,12 +37,17 @@ public class WaveManager : MonoBehaviour
         TimeToNextWave = 0;
     }
 
+    public void EnableSpawning()
+    {
+        _spawnEnabled = true;
+    }
+
     private void Update()
     {
+        if (!_spawnEnabled) { return; }
         TimeToNextWave = Mathf.Max(0, TimeToNextWave - Time.deltaTime);
         if (_wavesOngoing) { StartWave(); }
-        if (Input.GetKeyDown(KeyCode.K)) { SkipWave(); }
-        
+        if (Input.GetKeyDown(KeyCode.Tab)) { SkipWave(); }
     }
 
     private void StartWave()

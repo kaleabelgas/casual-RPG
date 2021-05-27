@@ -265,8 +265,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e0e9070c0c9921b4f8a2806dc5fcdf48, type: 2}
+  m_sharedMaterial: {fileID: 353054362970442213, guid: e0e9070c0c9921b4f8a2806dc5fcdf48, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -583,7 +583,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -139.36, y: 102}
-  m_SizeDelta: {x: 521.2831, y: 157.0944}
+  m_SizeDelta: {x: 317.2437, y: 157.0944}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1482552548
 MonoBehaviour:
@@ -607,8 +607,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: POWER DEFENSE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e0e9070c0c9921b4f8a2806dc5fcdf48, type: 2}
+  m_sharedMaterial: {fileID: 353054362970442213, guid: e0e9070c0c9921b4f8a2806dc5fcdf48, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
