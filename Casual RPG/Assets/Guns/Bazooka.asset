@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Bazooka
   m_EditorClassIdentifier: 
   Tag: Gun
-  BulletUsed: Rocket
+  BulletUsed: Energy
   AttackSpeed: 0.2
   AttackPoints: 3
   Arc: 50
   Radius: 1
-  ChanceToDrop: 50
+  ChanceToDrop: 20

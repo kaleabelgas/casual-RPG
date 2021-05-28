@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Wave 3
   m_EditorClassIdentifier: 
   prefabs:
-  - Prefab: Default Enemy
-    min: 4
+  - Prefab: Red
+    min: 1
     max: 5
-  TimeBeforeWave: 1
-  spawnPoints:
-  - {x: 5.74, y: 6.85e-43}
+  - Prefab: Brown
+    min: 3
+    max: 5
+  - Prefab: Blue
+    min: 5
+    max: 5
+  TimeBeforeWave: 10

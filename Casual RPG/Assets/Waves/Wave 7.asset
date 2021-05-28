@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b87f4af04ef15b6409aaf5f24bff59b1, type: 3}
+  m_Name: Wave 7
+  m_EditorClassIdentifier: 
+  prefabs:
+  - Prefab: Red
+    min: 1
+    max: 10
+  - Prefab: Brown
+    min: 3
+    max: 10
+  - Prefab: Blue
+    min: 5
+    max: 10
+  - Prefab: Soldier
+    min: 1
+    max: 5
+  - Prefab: Slime Guy
+    min: 1
+    max: 5
+  - Prefab: Flower
+    min: 1
+    max: 5
+  TimeBeforeWave: 10

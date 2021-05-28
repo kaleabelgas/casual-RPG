@@ -54,6 +54,7 @@ public class TowerManager : MonoBehaviour, IDamageable
         CurrentTowerHealth = Mathf.Max(0, CurrentTowerHealth - _damage);
         healthBar.SetBarSize(CurrentTowerHealth / (float)currentTower.Health);
         CameraShake.Instance.ShakeCamera(2f, 0.5f);
+        AudioManager.instance.Play("tower");
         if (CurrentTowerHealth <= 0) { Die(); }
         //Debug.Log(CurrentTowerHealth);
     }

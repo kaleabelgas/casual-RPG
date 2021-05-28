@@ -10,7 +10,7 @@ public struct EnemyContainer
     public int max;
 }
 
-[CreateAssetMenu(fileName = "New Wave", menuName = "Wave")]
+[CreateAssetMenu(fileName = "Wave", menuName = "Wave")]
 public class Wave : ScriptableObject
 {
     [SerializeField] private EnemyContainer[] prefabs;

@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Wave 2
   m_EditorClassIdentifier: 
   prefabs:
-  - Prefab: Default Enemy
-    min: 2
-    max: 5
+  - Prefab: Brown
+    min: 1
+    max: 3
+  - Prefab: Blue
+    min: 3
+    max: 3
   TimeBeforeWave: 10

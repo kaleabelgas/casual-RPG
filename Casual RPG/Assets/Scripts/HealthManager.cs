@@ -22,6 +22,7 @@ public class HealthManager : MonoBehaviour, IDamageable
         CurrentHealth = Mathf.Max(0, CurrentHealth - _damage);
 
         healthBar.SetBarSize(CurrentHealth / (float)healthDefault);
+        AudioManager.instance.Play("enemy");
 
         if (CurrentHealth <= 0) { Die(); }
     }

@@ -44,15 +44,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: Default Bullet
+  - tag: Bullet
     objectPrefab: {fileID: 4601630397369010829, guid: db8f7f278cb6b6d4c8771d433b4b1792, type: 3}
     poolSize: 1000
-  - tag: Homing Bullet 1
+  - tag: Pollen
     objectPrefab: {fileID: 4601630397369010829, guid: dbb3768fc7278c049a0b7bbc6fcfca2b, type: 3}
     poolSize: 10000
-  - tag: Homing Bullet 2
-    objectPrefab: {fileID: 4601630397369010829, guid: abd86d34a4f605543bfba824b205df4c, type: 3}
+  - tag: Energy
+    objectPrefab: {fileID: 4601630397369010829, guid: 871f9aa8f75e5244cbae405856fd5b24, type: 3}
     poolSize: 10000
-  - tag: Default Enemy
+  - tag: Soldier
     objectPrefab: {fileID: 1781837380728080339, guid: b3b2a38138c5c014f87f80d3e237570f, type: 3}
     poolSize: 100
+  - tag: Red
+    objectPrefab: {fileID: 1781837380728080339, guid: 44c4c1694c0bc424e87311905d3a326e, type: 3}
+    poolSize: 100
+  - tag: Blue
+    objectPrefab: {fileID: 1781837380728080339, guid: 835beb6ad3722bb4cb604ca16f919f43, type: 3}
+    poolSize: 100
+  - tag: Brown
+    objectPrefab: {fileID: 1781837380728080339, guid: 1ce56fe95c2d546499ad5ab8f0a08d81, type: 3}
+    poolSize: 100
+  - tag: Slime Guy
+    objectPrefab: {fileID: 1781837380728080339, guid: 1fbd65081d52e6043a7d906435d1000f, type: 3}
+    poolSize: 100
+  - tag: Flower
+    objectPrefab: {fileID: 1781837380728080339, guid: 5cde84406246c1c4694abacdd62be96a, type: 3}
+    poolSize: 100
+  - tag: Shotgun Bullet
+    objectPrefab: {fileID: 4601630397369010829, guid: 4b78f6f6d1944784d868a260292bc8c9, type: 3}
+    poolSize: 1000
+  - tag: Sniper Bullet
+    objectPrefab: {fileID: 4601630397369010829, guid: f6764e14d9630844da88281b9591f169, type: 3}
+    poolSize: 1000
+  - tag: Poison
+    objectPrefab: {fileID: 4601630397369010829, guid: bcf0c61ec6f1d2a44bdbc44720767c06, type: 3}
+    poolSize: 1000

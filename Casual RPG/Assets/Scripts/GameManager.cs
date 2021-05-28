@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,6 +37,13 @@ public class GameManager : MonoBehaviour
             List<GameObject> gameobjects = new List<GameObject>();
             listOfObjects.Add(objectList, gameobjects);
         }
+
+        levelNumber = SceneManager.GetActiveScene().buildIndex;
+    }
+
+    private void Start()
+    {
+        AudioManager.instance.Play("music");
     }
 
     public void StartWaveSpawn()
@@ -101,6 +109,8 @@ public class GameManager : MonoBehaviour
     public void LoseGame()
     {
         Debug.Log("GAME LOST");
+        AudioManager.instance.Stop("music");
+        AudioManager.instance.Play("lose");
         UIGameScene.EnableGameOverScreen();
         StopCoroutine(CheckWinGame());
         Time.timeScale = 0.1f;
@@ -113,7 +123,9 @@ public class GameManager : MonoBehaviour
         {
             if (!CheckObjectsInList(ObjectLists.enemy) && !CheckObjectsInList(ObjectLists.waves))
             {
-                Debug.Log("GAME WON");
+                Debug.Log("GAME WON"); 
+                AudioManager.instance.Stop("music");
+                AudioManager.instance.Play("win");
                 UIGameScene.EnableWinGameScreen();
                 int lastlevelReached = PlayerPrefs.GetInt("LASTLEVELREACHED", 1);
                 PlayerPrefs.SetInt("LASTLEVELREACHED", levelNumber > lastlevelReached ? levelNumber : lastlevelReached);
