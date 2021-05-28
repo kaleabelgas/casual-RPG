@@ -31,6 +31,7 @@ public class UILevelSelect : MonoBehaviour
     private IEnumerator LoadAsync(int _level)
     {
         if (_hasSelected) { yield break; }
+        AudioManager.instance.Stop("mainmenu");
         _hasSelected = true;
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_level);
         while (!asyncOperation.isDone)

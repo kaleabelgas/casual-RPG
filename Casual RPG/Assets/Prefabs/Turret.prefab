@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerUpgrades:
-  - {fileID: 11400000, guid: b61c2fad4363c9b4987fd8a40874b535, type: 2}
+  - {fileID: 11400000, guid: 328e488030eb7d14fb5595fde7214fc8, type: 2}
   weaponHolder: {fileID: 1857975206543249555}
   isMainTower: 0
   healthBar: {fileID: 7735732523240235035}

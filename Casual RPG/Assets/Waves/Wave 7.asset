@@ -20,7 +20,7 @@ MonoBehaviour:
     min: 3
     max: 10
   - Prefab: Blue
-    min: 5
+    min: 3
     max: 10
   - Prefab: Soldier
     min: 1
@@ -31,4 +31,4 @@ MonoBehaviour:
   - Prefab: Flower
     min: 1
     max: 5
-  TimeBeforeWave: 10
+  TimeBeforeWave: 15

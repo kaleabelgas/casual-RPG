@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2250930565688141088}
   - component: {fileID: 2543603005046323414}
   m_Layer: 6
-  m_Name: Turret Gun 4
+  m_Name: Flower Power
   m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSO: {fileID: 11400000, guid: 15265f6019347dd4bafc2705a7320efa, type: 2}
   weaponRenderer: {fileID: 2543603005046323414}
-  despawnTime: 10
+  despawnTime: 50
 --- !u!212 &2543603005046323414
 SpriteRenderer:
   m_ObjectHideFlags: 0

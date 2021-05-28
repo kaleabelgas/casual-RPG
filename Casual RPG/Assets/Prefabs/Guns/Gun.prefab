@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8571615833368975334}
   - component: {fileID: 2243980164616342745}
   m_Layer: 6
-  m_Name: Default Gun
+  m_Name: Gun
   m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSO: {fileID: 11400000, guid: d375692a95a3d074987ee7d7e2536376, type: 2}
   weaponRenderer: {fileID: 2243980164616342745}
-  despawnTime: 10
+  despawnTime: 50
 --- !u!212 &2243980164616342745
 SpriteRenderer:
   m_ObjectHideFlags: 0

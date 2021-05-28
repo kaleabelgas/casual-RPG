@@ -3558,6 +3558,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6040654040683952286, guid: ca547a9525c993a448389ef22205c18b, type: 3}
+      propertyPath: m_text
+      value: The enemies! You are not getting to the tower.
+      objectReference: {fileID: 0}
     - target: {fileID: 6847035400875968851, guid: ca547a9525c993a448389ef22205c18b, type: 3}
       propertyPath: m_Name
       value: Dialogue Manager

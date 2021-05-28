@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Soldier
   m_EditorClassIdentifier: 
   Tag: Enemy
-  Health: 200
-  MoveSpeed: 3
+  Health: 250
+  MoveSpeed: 2

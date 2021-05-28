@@ -90,6 +90,20 @@ public class AudioManager : MonoBehaviour
 
 		s.source.Play();
 	}
+
+	public bool IsPlaying(string sound)
+    {
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + name + " not found!");
+			return false;
+		}
+
+		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
+		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+		return s.source.isPlaying;
+    }
 	public void Stop(string sound)
 	{
 		Sound s = Array.Find(sounds, item => item.name == sound);

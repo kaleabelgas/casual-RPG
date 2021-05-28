@@ -76,19 +76,28 @@ MonoBehaviour:
   - name: tower
     clip: {fileID: 8300000, guid: 083de8a1980bedf40b0614cf9b9b8241, type: 3}
     volume: 1
-    volumeVariance: 0
+    volumeVariance: 0.2
     pitch: 1
-    pitchVariance: 0
+    pitchVariance: 0.5
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: enemy
     clip: {fileID: 8300000, guid: 29884c2a1ca9fe147a6faa1b4a823f3e, type: 3}
     volume: 1
+    volumeVariance: 0.2
+    pitch: 1
+    pitchVariance: 0.5
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: mainmenu
+    clip: {fileID: 8300000, guid: f832258c64e252542bce4fe9ae6c0498, type: 3}
+    volume: 1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
-    loop: 0
+    loop: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   tracks: []

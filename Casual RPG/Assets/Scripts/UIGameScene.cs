@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class UIGameScene : MonoBehaviour
 {
     [SerializeField] private WaveManager waveManager;
-    [SerializeField] private GameObject player;
     [SerializeField] private TextMeshProUGUI currentWaveText;
     [SerializeField] private TextMeshProUGUI timeToNextWaveText;
     [SerializeField] private TextMeshProUGUI timeUntilRespawn;
@@ -26,11 +25,13 @@ public class UIGameScene : MonoBehaviour
     private bool isPaused;
     private bool isCurrentlyDead;
 
+    bool _changeScenePressed = false;
 
     private void Awake()
     {
-        playerHealth = player.GetComponent<PlayerHealthManager>();
-        playerController = player.GetComponent<PlayerController>();
+        playerHealth = FindObjectOfType<PlayerHealthManager>();
+        playerController = FindObjectOfType<PlayerController>();
+        waveManager = FindObjectOfType<WaveManager>();
     }
     private void Start()
     {
@@ -123,6 +124,9 @@ public class UIGameScene : MonoBehaviour
 
     private IEnumerator LoadAsync(int _index)
     {
+        if (_changeScenePressed) { yield break; }
+
+        _changeScenePressed = true;
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_index);
 
         while (!asyncOperation.isDone)

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Blue
   m_EditorClassIdentifier: 
   Tag: Enemy
-  Health: 200
+  Health: 150
   MoveSpeed: 3

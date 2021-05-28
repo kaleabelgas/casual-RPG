@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 
         waveManagers = FindObjectsOfType<WaveManager>();
 
+        UIGameScene = FindObjectOfType<UIGameScene>();
+
         foreach (var objectList in (ObjectLists[])Enum.GetValues(typeof(ObjectLists)))
         {
             List<GameObject> gameobjects = new List<GameObject>();
@@ -113,6 +115,7 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.Play("lose");
         UIGameScene.EnableGameOverScreen();
         StopCoroutine(CheckWinGame());
+
         Time.timeScale = 0.1f;
     }
 
