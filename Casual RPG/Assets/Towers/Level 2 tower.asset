@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e234e58acf4ada4492da2ae9d092909, type: 3}
-  m_Name: Path 2
+  m_Script: {fileID: 11500000, guid: bd70da300a354a046809bfb410affa87, type: 3}
+  m_Name: Level 2 tower
   m_EditorClassIdentifier: 
-  PointPositions:
-  - {x: 0, y: -7}
-  - {x: 0, y: -3}
+  Health: 400
+  Weapon: {fileID: 7167207226684864068, guid: a46e10f956761fa40874c0a09aa4cf02, type: 3}

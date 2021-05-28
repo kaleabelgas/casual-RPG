@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Path 1
   m_EditorClassIdentifier: 
   PointPositions:
-  - {x: 0, y: 0}
+  - {x: 0, y: -3}

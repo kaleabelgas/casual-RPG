@@ -31,4 +31,4 @@ MonoBehaviour:
   - Prefab: Flower
     min: 10
     max: 10
-  TimeBeforeWave: 20
+  TimeBeforeWave: 30

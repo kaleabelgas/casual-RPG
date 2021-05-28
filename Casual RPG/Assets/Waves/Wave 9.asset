@@ -15,7 +15,7 @@ MonoBehaviour:
   prefabs:
   - Prefab: Red
     min: 5
-    max: 10
+    max: 5
   - Prefab: Brown
     min: 5
     max: 10
