@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3fac599ede824d4fab07b3c3330adb7, type: 3}
   m_Name: Shotgun Bullet
   m_EditorClassIdentifier: 
-  Damage: 10
+  Damage: 30
   Speed: 8
   IsHoming: 0
   SearchRadius: 50

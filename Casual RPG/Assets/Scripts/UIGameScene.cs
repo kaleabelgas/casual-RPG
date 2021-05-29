@@ -77,7 +77,7 @@ public class UIGameScene : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene(0);
+        StartCoroutine(LoadAsync(0));
     }
 
     public void Pause()
@@ -125,6 +125,7 @@ public class UIGameScene : MonoBehaviour
     private IEnumerator LoadAsync(int _index)
     {
         if (_changeScenePressed) { yield break; }
+        AudioManager.instance.Stop("music");
 
         _changeScenePressed = true;
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_index);

@@ -22,4 +22,4 @@ MonoBehaviour:
   - Prefab: Blue
     min: 1
     max: 5
-  TimeBeforeWave: 10
+  TimeBeforeWave: 15

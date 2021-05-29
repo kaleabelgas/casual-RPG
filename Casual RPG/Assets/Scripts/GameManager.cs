@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
             listOfObjects.Add(objectList, gameobjects);
         }
 
-        levelNumber = SceneManager.GetActiveScene().buildIndex;
+        levelNumber = SceneManager.GetActiveScene().buildIndex + 1;
     }
 
     private void Start()

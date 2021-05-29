@@ -46,7 +46,7 @@ MonoBehaviour:
   pools:
   - tag: Bullet
     objectPrefab: {fileID: 4601630397369010829, guid: db8f7f278cb6b6d4c8771d433b4b1792, type: 3}
-    poolSize: 1000
+    poolSize: 2000
   - tag: Pollen
     objectPrefab: {fileID: 4601630397369010829, guid: dbb3768fc7278c049a0b7bbc6fcfca2b, type: 3}
     poolSize: 10000
@@ -73,10 +73,10 @@ MonoBehaviour:
     poolSize: 100
   - tag: Shotgun Bullet
     objectPrefab: {fileID: 4601630397369010829, guid: 4b78f6f6d1944784d868a260292bc8c9, type: 3}
-    poolSize: 1000
+    poolSize: 2000
   - tag: Sniper Bullet
     objectPrefab: {fileID: 4601630397369010829, guid: f6764e14d9630844da88281b9591f169, type: 3}
-    poolSize: 1000
+    poolSize: 2000
   - tag: Poison
     objectPrefab: {fileID: 4601630397369010829, guid: bcf0c61ec6f1d2a44bdbc44720767c06, type: 3}
-    poolSize: 1000
+    poolSize: 2000

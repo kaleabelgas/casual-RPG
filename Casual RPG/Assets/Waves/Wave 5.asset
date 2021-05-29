@@ -28,4 +28,4 @@ MonoBehaviour:
   - Prefab: Slime Guy
     min: 1
     max: 5
-  TimeBeforeWave: 15
+  TimeBeforeWave: 20
