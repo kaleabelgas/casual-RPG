@@ -88,6 +88,7 @@ MonoBehaviour:
   gunSO: {fileID: 11400000, guid: e581ed032e7818d4fbd90d432502ed33, type: 2}
   weaponRenderer: {fileID: 2243980164616342745}
   despawnTime: 50
+  enlargeAmount: 2
 --- !u!212 &2243980164616342745
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Weapon : MonoBehaviour, IPickupable, IWeapon
+public class Weapon : MonoBehaviour, IWeapon, IPointerClickHandler
 {
     [SerializeField] private GunSO gunSO;
     [SerializeField] private SpriteRenderer weaponRenderer;
     [SerializeField] private float despawnTime;
+    [SerializeField] private float enlargeAmount = 2;
     private float despawnClock;
     private bool isEquipped;
 
@@ -14,6 +16,7 @@ public class Weapon : MonoBehaviour, IPickupable, IWeapon
 
     private const int fiveSeconds = 5;
     private const float overFive = .20f;
+    private Vector3 defaultScale;
 
     private Color weaponColor;
 
@@ -22,7 +25,24 @@ public class Weapon : MonoBehaviour, IPickupable, IWeapon
         weapon = GetComponent<IWeapon>();
         despawnClock = despawnTime;
         weaponColor = weaponRenderer.color;
+        defaultScale = transform.localScale;
+    }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button.Equals(PointerEventData.InputButton.Right))
+        {
+            Debug.Log($"Clicked {gameObject.name}");
+        }
+    }
+    private void OnMouseEnter()
+    {
+        transform.localScale = defaultScale * enlargeAmount;
+
+    }
+    private void OnMouseExit()
+    {
+        transform.localScale = defaultScale;
     }
 
     private void Update()
@@ -71,4 +91,5 @@ public class Weapon : MonoBehaviour, IPickupable, IWeapon
         float randomNumber = Random.Range(0, 100);
         if (randomNumber > gunSO.ChanceToDrop) { Destroy(gameObject); }
     }
+
 }
